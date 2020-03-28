@@ -7,9 +7,8 @@ function registrationSuccess(data, textStatus, jqXHR) {
 }
 
 function notificationCallback(data, textStatus, jqXHR) {
-  $('#notifyme-result').html("<font color='green'>Thanks for your interest in FaceQuest&trade; BETA. You will receive an email to confirm your subscription.</font>");
+  $('#notifyme-result').html("<font color='green'>Thanks for your interest in FaceQuest&trade; BETA. You will receive an email once we are ready to support non Gmail addresses.</font>");
   $('#notifyme-result').show();
-  $('#MERGE0').val('');
 }
 
 function registrationFailure(jqXHR, textStatus, errorThrown) {
