@@ -70,7 +70,7 @@ $('#signup-button').click(function() {
   if (validateForm()) {
     $.ajax({
       type: "POST",
-      url: "/api/v1/register",
+      url: "https://app.facequest.io/api/v1/register",
       data: {
         firstName: $('#firstName').val(),
         lastName: $('#lastName').val(),
