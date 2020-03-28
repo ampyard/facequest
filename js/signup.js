@@ -1,5 +1,5 @@
 function registrationSuccess(data, textStatus, jqXHR) {
-  $('#registration-result').html("<font color='green'>Thanks for registering to get FaceQuest&trade; BETA.  We'll take a look at your application and send you an email with the next steps.  Typical wait time is a day.</font>");
+  $('#registration-result').html("<font color='green'>Thanks for registering to get FaceQuest&trade; BETA.  We'll take a   look at your application and send you an email with the next steps.  Typical wait time is one week.</font>");
   $('#registration-result').show();
   $('#firstName').val('');
   $('#lastName').val('');
@@ -7,7 +7,7 @@ function registrationSuccess(data, textStatus, jqXHR) {
 }
 
 function notificationCallback(data, textStatus, jqXHR) {
-  $('#notifyme-result').html("<font color='green'>Thanks for your interest in FaceQuest&trade; BETA.  We are working on it, will keep you updated.</font>");
+  $('#notifyme-result').html("<font color='green'>Thanks for your interest in FaceQuest&trade; BETA. You will receive an email to confirm your subscription.</font>");
   $('#notifyme-result').show();
   $('#MERGE0').val('');
 }
@@ -48,7 +48,7 @@ function validateForm() {
     }
     return true;
   } else {
-    $('#registration-result').html("<font color='red'> Invalid email address. <br />Note: At the moment, FaceQuest&trade; supports only gmail users. Drop your email address below! </font>");
+    $('#registration-result').html("<font color='red'> Note: At the moment, FaceQuest&trade; supports only Gmail users. Please drop your email address in the 'Not a Gmail user' section.</font>");
     $('#registration-result').show();
     return false;
   }
