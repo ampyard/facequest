@@ -54,6 +54,11 @@
       })
     });
   </script>
+  <script type="text/javascript">
+    if (window.location.protocol != "https:" && window.location.hostname !== "localhost" && !window.location.href.startsWith("file")) {
+      window.location.protocol = "https";
+    }
+  </script>
 </head>
 
 <body>
@@ -69,8 +74,7 @@
             <li class="menu-active"><a href="index.html#home">Home</a></li>
             <li><a href="index.html#feature">Docs</a></li>
             <li><a href="signup.html">Sign Up</a></li>
-            <!--	<li><a href="#price">Pricing</a></li>
-          -->
+
           </ul>
         </nav><!-- #nav-menu-container -->
       </div>
@@ -206,6 +210,7 @@
   <script src="js/mail-script.js"></script>
   <script src="js/main.js"></script>
   <script src="js/signup.js"></script>
+  <script src="js/vendor/tawkto.js"></script>
 </body>
 
 </html>
