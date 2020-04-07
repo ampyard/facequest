@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+User-agent: *
+Disallow: /signup.html
+
+User-agent: Googlebot
+Allow: /signup.html
+
+User-agent: *
+Disallow: /generic.html
+
+User-agent: *
+Disallow: /elements.html
