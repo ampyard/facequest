@@ -1,0 +1,71 @@
+---
+layout: signup_page
+title: Sign Up
+permalink: /sign-up
+---
+
+<section class="feature-area pb-10 mt-100" id="service">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pt-30 pb-10 col-lg-10">
+        <div class="title">
+          <h1 class="mb-10">Request Access to FaceQuest BETA</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mt-10">
+            <div class="title">
+              <h3 class="mb-10">Do you have a Gmail account?</h3>
+            </div>
+            <form action="#">
+              <div class="mt-10">
+                <div class="input-group mt-10">
+                  <input type="text" id="gmail" name="gmail" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required class="single-input-primary">
+                </div>
+                <div class="input-group mt-10">
+                  <input type="text" id="firstName" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input-primary">
+                </div>
+                <div class="input-group mt-10">
+                  <input type="text" id="lastName" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input-primary">
+                </div>
+                <div class="mt-10" id="registration-result" style="display:none">
+
+                </div>
+                <div class="mt-10">
+                  By signing up for FaceQuest Beta, you agree to these <a href="beta-terms" target="_blank">BETA program terms and conditions</a> and <a href="terms-of-use" target="_blank">Terms of Use</a>.
+                </div>
+                <div id="captcha"> </div>
+                <div class="mt-10">
+                  <a href="#" class="genric-btn primary radius" id="signup-button">I agree, sign me up!</a>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6 mt-10 box">
+            <div class="title">
+              <h3 class="mb-10">Not a Gmail user?</h3>
+            </div>
+
+            FaceQuest can email you when it is ready.
+            <form action="#">
+              <input type="hidden" name="u" id="u" value="c9aede6dace2993b4b6371a05">
+              <input type="hidden" name="id" id="id" value="860ff7794a">
+
+              <div class="mt-10">
+                <div class="input-group mt-10">
+                  <input type="email" name="MERGE0" id="MERGE0" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required class="single-input-primary">
+                </div>
+                <div class="mt-10" id="notifyme-result" style="display:none">
+
+                </div>
+                <div class="mt-10">
+                  By signing up for FaceQuest Beta, you agree to these <a href="beta-terms" target="_blank">BETA program terms and conditions</a> and <a href="terms-of-use" target="_blank">Terms of Use</a>.
+                </div>
+
+                <div class="mt-10">
+                  <a href="#" class="genric-btn primary radius" id="notifyme-button">Notify me when ready!</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</section>
