@@ -1,0 +1,13 @@
+<script type="text/javascript">
+   var verifyCallback = function(response) {
+     console.log(response);
+   };
+   var onloadCallback = function() {
+           grecaptcha.render('captcha', {
+             'sitekey' : '6LeQ9OkUAAAAADwClUBAcYuEo6gAvt4Ae-KBzWVF',
+             'callback' : verifyCallback,
+             'theme' : 'light'
+           });
+         };
+</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>

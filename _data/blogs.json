@@ -1,0 +1,17 @@
+[{
+    "title": "The role of AWS in building a SaaS product",
+    "image": "/img/blogs/architecture.jpg",
+    "date": "12 April, 2020",
+    "url": "https://medium.com/@notify.kamalraj/the-role-of-aws-in-building-a-saas-product-62ec078e4920",
+    "excerpt": "While we could have used EC2, it often requires a great deal of tedious manual configuration and oversight. Managing these would require a great deal of resources and effort, and it takes time away from what’s most important: deploying applications.",
+    "tags":["AWS","Architecture"]
+  },
+  {
+      "title": "Eating my Own Agile/DevOps Dog Food — S1E1",
+      "image": "/img/blogs/agile_devops.jpeg",
+      "date": "12 April, 2020",
+      "url": "https://medium.com/@VivekGanesan/eating-my-own-agile-devops-dog-food-s1e1-b1b307b936ce",
+      "excerpt": "FaceQuest being a face recognition service, we needed to store the reference faces somewhere. We created a research spike (dog food! munch, munch) to decide where to store our reference faces.",
+      "tags":["Agile","DevOps","Image Storage"]
+    }
+]

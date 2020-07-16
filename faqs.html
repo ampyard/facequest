@@ -1,0 +1,107 @@
+---
+layout: page
+title: Frequently Asked Questions
+permalink: /faqs
+---
+<main class="main-faq">
+	<div>
+		<h1 class="h1-faq">FAQs</h1>
+		<section id="introduction" class="question-section">
+			<h2><span>Q: </span>What is FaceQuest?</h2>
+			<p>FaceQuest provides advanced, ethical face recognition service to students, developers, and businesses worldwide. We match and recognize faces in photos.  Our innovative API platform lets developers & businesses easily add facial recognition features in their own products.</p>
+		</section>
+		<section id="usage" class="question-section">
+			<h2><span>Q: </span>How do I use FaceQuest?</h2>
+			<p>You can integrate FaceQuest with your own software using our developer-friendly API endpoints documented <a href="https://app.facequest.io/api-docs/">here</a>.  Alternatively, you can access the online dashboard of FaceQuest <a href="https://app.facequest.io/">here</a>.</p>
+		</section>
+		<section id="features" class="question-section">
+			<h2><span>Q: </span>What features does FaceQuest offer?</h2>
+			<p>FaceQuest can be used to answer any of the following questions.</p>
+        <ul>
+          <li><span style="font-weight:bold">Who is in this photo that I got?</span> - This is generally called as 1:N Face Search.  Here, you are required to build a collection of reference faces from which the search will happen.  FaceQuest plans come with a generous quota to store a number of reference faces, tailored to each business need.
+          </li>
+          <li><span style="font-weight:bold">Is the person in this new photo the same as the person in the reference photo?</span> - This is generally called as 1:1 Face Match.  Here, you are required to provide a pair of photos - one is a reference photo and another, the photo under inspection.
+          </li>
+        </ul>
+      <p>Apart from the above core features, FaceQuest offers the following features for ease-of-use. </p>
+      <ul>
+        <li>Folder based organization of Reference Faces</li>
+        <li>Tracking the status of each quest</li>
+        <li>Account management dashboard</li>
+        <li>API Secret manager</li>
+      <ul>
+		</section>
+			<section id="demo" class="question-section">
+				<h2><span>Q: </span>Do you have a Demo?</h2>
+				<p>You can check out our user guide <a href="https://facequest.io/user-guide">here</a>. Alternatively, you can book a demo with our sales team from here.
+</p>
+			</section>
+			<section id="quest" class="question-section">
+				<h2><span>Q: </span>What is Quest?</h2>
+				<p>Quest is nothing but a Face Match or Face Search when performed with 1 reference image or N reference images respectively. Each call to our <a href="https://app.facequest.io/api-docs/#/quests/startNewQuest">API</a> to do face search/match is considered as a Quest. Any face search/match initiated from FaceQuest Web User Interface is also considered as Quests.  Requests to upload reference images, track the status of quests, view folders, remove faces, list folders, are not considered a ‘Quest’.
+</p>
+			</section>
+			<section id="responsetime" class="question-section">
+				<h2><span>Q: </span>What is the average response time for a quest?
+</h2>
+				<p>The core ‘face search/match’ process takes only 2 seconds, however, the perceived performance could vary due to the following reasons.
+</p>
+<ul>
+  <li><span style="font-weight:bold">Indexing.</span> The very first quest involving a reference face takes more time, as FaceQuest also indexes a face while running the first quest.  This makes sure that the future quests using the same reference faces are lightning-speed.  Bigger the file size of the reference face image, the more time it would take for FaceQuest to index it.
+  </li>
+  <li><span style="font-weight:bold">The number of faces in the picture given as input to a quest.</span> For example, a quest run with a picture of 5 people will take approximately five times more time than a quest run with a picture of only one person in it.
+  </li>
+  <li><span style="font-weight:bold">Current load in the system.</span> Facequest shares its infrastructure among multiple customers, without compromising data security.  Due to this sharing, if you happen to fire a quest during our peak load times, it is likely to take more time than when you fire it when there is less load on the system.  FaceQuest uses intelligent auto scaling of servers to handle the workload to achieve a predictable response time.  We implement a fair sharing of the resources for all customers and we continuously work to upgrade our waiting times for quest runs.  In case you do not want to share computational resources with other customers, you can <a href="mailto:support@facequest.io">email us</a> and we will be happy to provide you with a dedicated instance at a custom price.
+  </li>
+  </ul>
+			</section>
+			<section id="usecase" class="question-section">
+				<h2><span>Q: </span>Where can FaceQuest be used?</h2>
+				<p>FaceQuest can be used in various industries like Banks, Insurance companies, Retail stores, Airlines, Educational institutions, etc.  in diverse ways. You can read our full cases across industries <a href="https://facequest.io/uses">here</a>.
+</p>
+			</section>
+			<section id="cost" class="question-section">
+				<h2><span>Q: </span>How much does it cost to use FaceQuest?</h2>
+				<p>We offer straightforward pricing that compliments your usage needs and business goals.
+Our subscription plans all start with a 7-day free trial* and then you’re billed a flat rate plus the credits purchased by you based on your usage needs. You can see our detailed pricing plan <a href="https://facequest.io/#pricing">here</a>.
+</p>
+			</section>
+			<section id="billing" class="question-section">
+				<h2><span>Q: </span>How am I billed?</h2>
+				<p>Subscription charges are billed at the beginning of every billing cycle.  Transaction charges are covered by credits, which you can purchase any time.</p>
+			</section>
+			<section id="credits" class="question-section">
+				<h2><span>Q: </span>What are FaceQuest Credits? And how much do they cost?</h2>
+				<p>FaceQuest offers unlimited quests for the users in all the paid plans. However, to run a quest a user has to purchase FaceQuest credits in addition to their subscription. Quests allowed per FaceQuest credit varies according to the subscription plan. 1 FaceQuest credit is valued at $1. You can see our detailed pricing plan <a href="https://facequest.io/#pricing">here</a>.
+</p>
+			</section>
+			<section id="security" class="question-section">
+				<h2><span>Q: </span>Is FaceQuest Face Recognition secure?</h2>
+				<p>Yes. FaceQuest is hosted at Amazon Web Services (AWS) & Heroku. FaceQuest uses AWS S3 to store all the reference faces & quest images which are encrypted using AES-256. FaceQuest offers RSA 2048 bit SSL encryption for all the data in transit.
+All requests need to be authenticated using a secret that the user generates.</p>
+<p>Payments are processed through <a href="https://razorpay.com">RazorPay</a>. We never see/store your credit card number, CVV or any authorization data you provide for the payment.
+</p>
+			</section>
+		<section id="encryption" class="question-section">
+			<h2><span>Q: </span>What encryption do you use?</h2>
+			<p>At FaceQuest we strive to use SSL, a secure protocol that secures the communication between entities over a network. With TLS 1.2 encryption in place, all the data sent over the internet via our APIs are encrypted using RSA 2048 bit SSL which cannot be intercepted and is not visible to anyone unintended. All reference faces are encrypted and then stored into our system.  We encrypt our backups too.
+</p>
+		</section>
+	</div>
+	<nav class="section-nav">
+		<ol class="ol-faq">
+			<li class="li-faq"><a href="#introduction">What is FaceQuest?</a></li>
+			<li class="li-faq"><a href="#usage">How do I use FaceQuest?</a></li>
+			<li class="li-faq"><a href="#features">What features does FaceQuest offer?</a></li>
+			<li class="li-faq"><a href="#demo">Do you have a Demo?</a></li>
+			<li class="li-faq"><a href="#quest">What is Quest?</a></li>
+			<li class="li-faq"><a href="#responsetime">What is the average response time for a quest?</a></li>
+			<li class="li-faq"><a href="#usecase">Where can FaceQuest be used?</a></li>
+			<li class="li-faq"><a href="#cost">How much does it cost to use FaceQuest?</a></li>
+			<li class="li-faq"><a href="#billing">How am I billed?</a></li>
+			<li class="li-faq"><a href="#credits">What are FaceQuest Credits? And how much do they cost?</a></li>
+			<li class="li-faq"><a href="#security">Is FaceQuest Face Recognition secure?</a></li>
+			<li class="li-faq"><a href="#encryption">What encryption do you use?</a></li>
+		</ol>
+	</nav>
+</main>
