@@ -1,0 +1,198 @@
+openapi: 3.0.1
+info:
+  title: FaceQuest API
+  description: >-
+    FaceQuest is a simple and developer-friendly FRaaS (Face Recognition as a
+    Service).  You can find out more about FaceQuest at
+    [https://facequest.io](https://facequest.io).
+  termsOfService: 'https://facequest.io/terms_of_use.html'
+  contact:
+    email: support@facequest.io
+  version: '1.0'
+externalDocs:
+  description: Find out more about FaceQuest
+  url: 'https://facequest.io'
+servers:
+  - url: 'https://verifyapi.facequest.io/api/v1'
+security:
+  - secret: []
+    email: []
+tags:
+  - name: face-verification
+    description: 'APIs for FaceQuest''s 1:1 Face verification'
+paths:
+  /verification:
+    get:
+      tags:
+        - face-verification
+      summary: Fetch verification logs
+      operationId: getVerificationLogs
+      responses:
+        '200':
+          description: Fetch successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    $ref: '#/components/schemas/Page'
+                  _embedded:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VerificationLog'
+      parameters: []
+    post:
+      tags:
+        - face-verification
+      summary: Verify if two faces are the same
+      operationId: verifyFaces
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - referenceFace
+                - givenFace
+              properties:
+                referenceFace:
+                  type: string
+                  description: Image file containing reference face. Should contain exactly
+                    one face.
+                  format: binary
+                givenFace:
+                  type: string
+                  description: Image file containing face to be verified. Should contain
+                    exactly one face.
+                  format: binary
+                title:
+                  type: string
+                  description: Optional title for the request.  This will be returned along
+                    with the verification logs.
+                notes:
+                  type: string
+                  description: Optional notes for your use.  This will be returned along
+                    with the verification logs.
+        required: true
+      responses:
+        '200':
+          description: Face verified successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SucceededVerificationLog'
+        '500':
+          description: Face verification failed. The picture needs to be flagged for human
+            review.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FailedVerificationLog'
+      parameters: []
+components:
+  schemas:
+    VerificationLog:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426655440000
+        result:
+          type: string
+          enum:
+            - FAILED_NEED_HUMAN_REVIEW
+            - ERROR
+            - SUCCESS
+        title:
+          type: string
+          example: Verification for User 346
+          description: Optional title specified in the request
+        notes:
+          type: string
+          example: This is a request to verify user 346
+        created:
+          type: string
+          format: date-time
+          example: '2020-03-24T14:42:57.027Z'
+        error_message:
+          type: string
+          example: More than one faces found in reference picture
+    SucceededVerificationLog:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426655440000
+        result:
+          type: string
+          enum:
+            - SUCCESS
+        title:
+          type: string
+          example: Verification for User 346
+        match_percentage:
+          type: number
+          format: double
+          example: 89.34
+        notes:
+          type: string
+          example: This is a request to verify user 346
+        created:
+          type: string
+          format: date-time
+          example: '2020-03-24T14:42:57.027Z'
+    FailedVerificationLog:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426655440000
+        result:
+          type: string
+          enum:
+            - FAILED_NEED_HUMAN_REVIEW
+            - ERROR
+        title:
+          type: string
+          example: Verification for User 346
+          description: Optional title specified in the request
+        notes:
+          type: string
+          example: This is a request to verify user 346
+        created:
+          type: string
+          format: date-time
+          example: '2020-03-24T14:42:57.027Z'
+        error_message:
+          type: string
+          description: >-
+            An explanation of the error if verification process could not be
+            finished.  Relevant when result is ERROR
+          example: More than one faces found in reference picture
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+    Page:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+  securitySchemes:
+    email:
+      type: apiKey
+      description: Email registered with FaceQuest
+      name: email
+      in: header
+    secret:
+      type: apiKey
+      description: FaceQuest API secret key that you set from FaceQuest Web UI
+      name: secret
+      in: header
+  links: {}
+  callbacks: {}
