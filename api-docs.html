@@ -1,0 +1,25 @@
+---
+layout: redocpage
+title: FaceQuest API Documentation
+permalink: /api-docs
+---
+<section class="feature-area pb-10 mt-70">
+  <div class="container">
+    <div id="redoc-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+    <script language="javascript">
+      Redoc.init('/openapi-definition.yml', {
+        scrollYOffset: 70,
+        theme:{colors: {
+      		primary: {
+      			main: '#481380',
+      		},
+      		secondary: {
+      			main: '#1976d2',
+      		}
+      	}
+      }
+      }, document.getElementById('redoc-container'))
+    </script>
+  </div>
+</section>

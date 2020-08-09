@@ -15,8 +15,9 @@ externalDocs:
 servers:
   - url: 'https://verifyapi.facequest.io/api/v1'
 security:
-  - secret: []
-    email: []
+  - Secret: []
+    Email: []
+    Constant-Authorization-Token: []
 tags:
   - name: face-verification
     description: 'APIs for FaceQuest''s 1:1 Face verification'
@@ -27,6 +28,15 @@ paths:
         - face-verification
       summary: Fetch verification logs
       operationId: getVerificationLogs
+      x-codeSamples:
+        - lang: Shell
+          source: |
+            curl 'https://verifyapi.facequest.io/api/v1/verification' \
+            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+            -H 'email: email_id_registered_with_facequest' \
+            -H 'accept: application/json, text/plain, */*' \
+            -H 'authorizationtoken: bearer' \            
+            --compressed
       responses:
         '200':
           description: Fetch successful
@@ -184,15 +194,20 @@ components:
         totalElements:
           type: integer
   securitySchemes:
-    email:
+    Email:
       type: apiKey
       description: Email registered with FaceQuest
       name: email
       in: header
-    secret:
+    Secret:
       type: apiKey
       description: FaceQuest API secret key that you set from FaceQuest Web UI
       name: secret
+      in: header
+    Constant-Authorization-Token:
+      type: apiKey
+      description: A constant value `bearer` for all requests issued via API
+      name: authorizationtoken
       in: header
   links: {}
   callbacks: {}
