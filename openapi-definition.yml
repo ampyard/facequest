@@ -5,7 +5,7 @@ info:
     FaceQuest is a simple and developer-friendly FRaaS (Face Recognition as a
     Service).  You can find out more about FaceQuest at
     [https://facequest.io](https://facequest.io).
-  termsOfService: 'https://facequest.io/terms_of_use.html'
+  termsOfService: 'https://facequest.io/terms-of-use'
   contact:
     email: support@facequest.io
   version: '1.0'
@@ -35,7 +35,7 @@ paths:
             -H 'secret: secret_that_i_set_in_facequest_web_ui' \
             -H 'email: email_id_registered_with_facequest' \
             -H 'accept: application/json, text/plain, */*' \
-            -H 'authorizationtoken: bearer' \            
+            -H 'authorizationtoken: bearer' \
             --compressed
       responses:
         '200':
