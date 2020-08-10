@@ -82,17 +82,17 @@ paths:
                 referenceFace:
                   type: string
                   description: Image file containing reference face. Should contain exactly
-                    one face.
+                    one face not more than 3 MB.
                   format: binary
                 givenFace:
                   type: string
                   description: Image file containing face to be verified. Should contain
-                    exactly one face.
+                    exactly one face note more than 3 MB. Only JPG/PNG images are supported.
                   format: binary
                 title:
                   type: string
                   description: Optional title for the request.  This will be returned along
-                    with the verification logs.
+                    with the verification logs. Only JPG/PNG images are supported.
                 notes:
                   type: string
                   description: Optional notes for your use.  This will be returned along
