@@ -31,7 +31,7 @@ paths:
       x-codeSamples:
         - lang: Shell
           source: |
-            curl 'https://verifyapi.facequest.io/api/v1/verification' \
+            curl -X GET 'https://verifyapi.facequest.io/api/v1/verification' \
             -H 'secret: secret_that_i_set_in_facequest_web_ui' \
             -H 'email: email_id_registered_with_facequest' \
             -H 'accept: application/json, text/plain, */*' \
@@ -57,6 +57,19 @@ paths:
         - face-verification
       summary: Verify if two faces are the same
       operationId: verifyFaces
+      x-codeSamples:
+        - lang: Shell
+          source: |
+            curl -X POST 'https://verifyapi.facequest.io/api/v1/verification' \
+            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+            -H 'email: email_id_registered_with_facequest' \
+            -H 'accept: application/json, text/plain, */*' \
+            -H 'authorizationtoken: bearer' \
+            -F 'referenceFace=@reference_face_file.jpg' \
+            -F 'givenFace=@given_face_file.png' \
+            -F 'title=sample_title' \
+            -F 'notes=sample_notes' \
+            --compressed
       requestBody:
         content:
           multipart/form-data:

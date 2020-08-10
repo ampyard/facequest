@@ -3235,6 +3235,10 @@ h2 {
 
 /*****************************************************/
 
-.token.function .token.{
+.token.function{
   color:#a0fbaa
+}
+
+pre{
+  color:#ffffff
 }
