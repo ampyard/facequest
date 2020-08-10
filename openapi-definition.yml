@@ -214,7 +214,7 @@ components:
       in: header
     Secret:
       type: apiKey
-      description: FaceQuest API secret key that you set from FaceQuest Web UI
+      description: FaceQuest API secret key that you set from FaceQuest Web UI (https://app.facequest.io/#/accountsettings)
       name: secret
       in: header
     Constant-Authorization-Token:
