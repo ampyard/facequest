@@ -22,7 +22,7 @@ tags:
   - name: face-verification
     description: 'APIs for FaceQuest''s 1:1 Face verification'
 paths:
-  /verification:
+  /verification/logs:
     get:
       tags:
         - face-verification
@@ -31,10 +31,10 @@ paths:
       x-codeSamples:
         - lang: Shell
           source: |
-            curl -X GET 'https://verifyapi.facequest.io/api/v1/verification' \
+            curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/logs' \
             -H 'secret: secret_that_i_set_in_facequest_web_ui' \
             -H 'email: email_id_registered_with_facequest' \
-            -H 'accept: application/json, text/plain, */*' \
+            -H 'accept: application/json' \
             -H 'authorizationtoken: bearer' \
             --compressed
       responses:
@@ -52,10 +52,47 @@ paths:
                     items:
                       $ref: '#/components/schemas/VerificationLog'
       parameters: []
+  /verification/uploadurl:
+    get:
+      tags:
+        - face-verification
+      summary: Fetch urls to upload reference face and face to be validated 
+      operationId: getUploadUrl
+      x-codeSamples:
+        - lang: Shell
+          source: |
+            curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/uploadurl' \
+            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+            -H 'email: email_id_registered_with_facequest' \
+            -H 'accept: application/json' \
+            -H 'authorizationtoken: bearer' \
+            --compressed
+      responses:
+        '200':
+          description: Fetch successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadUrlResponse'
+        '403':
+          description: Insufficient credits
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                  errorMessage:
+                    type: string
+                    description: >-
+                      An explanation of the error
+      parameters: []
+  /verification:
     post:
       tags:
         - face-verification
-      summary: Verify if two faces are the same
+      summary: Creates verification request that can be tracked asyncronously
       operationId: verifyFaces
       x-codeSamples:
         - lang: Shell
@@ -63,58 +100,124 @@ paths:
             curl -X POST 'https://verifyapi.facequest.io/api/v1/verification' \
             -H 'secret: secret_that_i_set_in_facequest_web_ui' \
             -H 'email: email_id_registered_with_facequest' \
-            -H 'accept: application/json, text/plain, */*' \
+            -H 'accept: application/json' \
             -H 'authorizationtoken: bearer' \
-            -F 'referenceFace=@reference_face_file.jpg' \
-            -F 'givenFace=@given_face_file.png' \
-            -F 'title=sample_title' \
-            -F 'notes=sample_notes' \
             --compressed
       requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              required:
-                - referenceFace
-                - givenFace
-              properties:
-                referenceFace:
-                  type: string
-                  description: Image file containing reference face. Should contain exactly
-                    one face not more than 3 MB.
-                  format: binary
-                givenFace:
-                  type: string
-                  description: Image file containing face to be verified. Should contain
-                    exactly one face note more than 3 MB. Only JPG/PNG images are supported.
-                  format: binary
-                title:
-                  type: string
-                  description: Optional title for the request.  This will be returned along
-                    with the verification logs. Only JPG/PNG images are supported.
-                notes:
-                  type: string
-                  description: Optional notes for your use.  This will be returned along
-                    with the verification logs.
+        description: Request body to be sent to initiate verification request
         required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerificationRequest'
       responses:
         '200':
-          description: Face verified successfully
+          description: Successfully created face verification request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SucceededVerificationLog'
-        '500':
-          description: Face verification failed. The picture needs to be flagged for human
-            review.
+                type: object
+                properties:
+                  verificationRequestId:
+                    type: string
+                    format: uuid
+        '403':
+          description: Insufficient credits
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FailedVerificationLog'
-      parameters: []
+                type: object
+                properties:
+                  data:
+                    type: object
+                  errorMessage:
+                    type: string
+                    description: >-
+                      An explanation of the error
+  /verification/{verificationRequestId}:
+    get:
+      tags:
+        - face-verification
+      summary: Track any verification request using UUID, returned upon invoking POST /api/v1/verification 
+      parameters:
+        - name: verificationRequestId
+          in: path
+          description: UUID of the verification request to fetch
+          required: true
+          schema:
+            type: string
+            format: uuid
+      operationId: getVerificationStatus
+      x-codeSamples:
+        - lang: Shell
+          source: |
+            curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/{verificationRequestId}' \
+            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+            -H 'email: email_id_registered_with_facequest' \
+            -H 'accept: application/json' \
+            -H 'authorizationtoken: bearer' \
+            --compressed
+      responses:
+        '200':
+          description: Fetch successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationLog'
 components:
   schemas:
+    UploadUrlResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            referenceFace:
+              type: object
+              properties:
+                uploadUrl:
+                  type: string
+                  format: uri
+                filePath:
+                  type: string
+                  format: uri
+            faceToBeValidated:
+              type: object
+              properties:
+                uploadUrl:
+                  type: string
+                  format: uri
+                filePath:
+                  type: string
+                  format: uri
+        errorMessage:
+          type: string
+    VerificationRequest:
+      type: object
+      required: 
+        - referenceFaceFilePath
+        - givenFaceFilePath
+      properties:
+        referenceFaceFilePath:
+          type: string
+          description: filePath contained within referenceFace object of the response returned upon invoking 
+            /api/v1/verification/uploadurl
+          required: true
+        givenFaceFilePath:
+          type: string
+          description: filePath contained within faceToBeValidated object of the response returned upon invoking 
+            /api/v1/verification/uploadurl
+          required: true
+        title:
+          type: string
+          description: Optional title for the request.  This will be returned along
+            with the verification logs. Only JPG/PNG images are supported.
+          required: false
+        notes:
+          type: string
+          description: Optional notes for your use.  This will be returned along
+            with the verification logs.
+          required: false
     VerificationLog:
       type: object
       properties:
@@ -128,57 +231,10 @@ components:
             - FAILED_NEED_HUMAN_REVIEW
             - ERROR
             - SUCCESS
-        title:
-          type: string
-          example: Verification for User 346
-          description: Optional title specified in the request
-        notes:
-          type: string
-          example: This is a request to verify user 346
-        created:
-          type: string
-          format: date-time
-          example: '2020-03-24T14:42:57.027Z'
-        error_message:
-          type: string
-          example: More than one faces found in reference picture
-    SucceededVerificationLog:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: 123e4567-e89b-12d3-a456-426655440000
-        result:
-          type: string
-          enum:
-            - SUCCESS
-        title:
-          type: string
-          example: Verification for User 346
-        match_percentage:
+        matchPercentage:
           type: number
           format: double
           example: 89.34
-        notes:
-          type: string
-          example: This is a request to verify user 346
-        created:
-          type: string
-          format: date-time
-          example: '2020-03-24T14:42:57.027Z'
-    FailedVerificationLog:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: 123e4567-e89b-12d3-a456-426655440000
-        result:
-          type: string
-          enum:
-            - FAILED_NEED_HUMAN_REVIEW
-            - ERROR
         title:
           type: string
           example: Verification for User 346
@@ -186,16 +242,12 @@ components:
         notes:
           type: string
           example: This is a request to verify user 346
-        created:
+        errorMessage:
           type: string
-          format: date-time
-          example: '2020-03-24T14:42:57.027Z'
-        error_message:
-          type: string
+          example: More than one faces found in reference picture
           description: >-
             An explanation of the error if verification process could not be
             finished.  Relevant when result is ERROR
-          example: More than one faces found in reference picture
     ErrorResponse:
       type: object
       properties:
@@ -206,6 +258,7 @@ components:
       properties:
         totalElements:
           type: integer
+          example: 1
   securitySchemes:
     Email:
       type: apiKey
