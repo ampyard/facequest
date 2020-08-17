@@ -56,7 +56,8 @@ paths:
     get:
       tags:
         - face-verification
-      summary: Fetch urls to upload reference face and face to be validated 
+      summary: Fetch upload URLs
+      description: Returns pre-signed URLs to upload reference face file and the file to be validated
       operationId: getUploadUrl
       x-codeSamples:
         - lang: Shell
@@ -75,7 +76,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UploadUrlResponse'
         '403':
-          description: Insufficient credits
+          description: Unauthorized.  This can be either due to insufficient credits or invalid credentials.
           content:
             application/json:
               schema:
@@ -92,7 +93,8 @@ paths:
     post:
       tags:
         - face-verification
-      summary: Creates verification request that can be tracked asyncronously
+      summary: Creates verification request
+      description: Creates a new verification request.  The progress of this request can be tracked asynchronously.
       operationId: verifyFaces
       x-codeSamples:
         - lang: Shell
@@ -122,7 +124,7 @@ paths:
                     type: string
                     format: uuid
         '403':
-          description: Insufficient credits
+          description: Unauthorized.  This can be either due to insufficient credits or invalid credentials.
           content:
             application/json:
               schema:
@@ -134,11 +136,13 @@ paths:
                     type: string
                     description: >-
                       An explanation of the error
+
   /verification/{verificationRequestId}:
     get:
       tags:
         - face-verification
-      summary: Track any verification request using UUID, returned upon invoking POST /api/v1/verification 
+      summary: Track verification request
+      description: Track any verification request using `verificationRequestId`, returned upon invoking `POST` request at URL `/api/v1/verification`
       parameters:
         - name: verificationRequestId
           in: path
@@ -180,7 +184,6 @@ components:
                   format: uri
                 filePath:
                   type: string
-                  format: uri
             faceToBeValidated:
               type: object
               properties:
@@ -189,25 +192,14 @@ components:
                   format: uri
                 filePath:
                   type: string
-                  format: uri
         errorMessage:
           type: string
     VerificationRequest:
       type: object
-      required: 
+      required:
         - referenceFaceFilePath
         - givenFaceFilePath
       properties:
-        referenceFaceFilePath:
-          type: string
-          description: filePath contained within referenceFace object of the response returned upon invoking 
-            /api/v1/verification/uploadurl
-          required: true
-        givenFaceFilePath:
-          type: string
-          description: filePath contained within faceToBeValidated object of the response returned upon invoking 
-            /api/v1/verification/uploadurl
-          required: true
         title:
           type: string
           description: Optional title for the request.  This will be returned along
@@ -218,6 +210,15 @@ components:
           description: Optional notes for your use.  This will be returned along
             with the verification logs.
           required: false
+        referenceFaceFilePath:
+          type: string
+          description: Value of `referenceFace.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
+          required: true
+        givenFaceFilePath:
+          type: string
+          description: Value of `faceToBeValidated.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
+          required: true
+
     VerificationLog:
       type: object
       properties:
