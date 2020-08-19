@@ -233,6 +233,7 @@ components:
             - FAILED_NEED_HUMAN_REVIEW
             - ERROR
             - SUCCESS
+            - PENDING
         matchPercentage:
           type: number
           format: double
@@ -246,7 +247,7 @@ components:
           example: This is a request to verify user 346
         errorMessage:
           type: string
-          example: More than one faces found in reference picture
+          example: More than one faces found in reference photo
           description: >-
             An explanation of the error if verification process could not be
             finished.  Relevant when result is ERROR
