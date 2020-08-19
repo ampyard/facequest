@@ -10,8 +10,9 @@ info:
     email: support@facequest.io
   version: '1.0'
 externalDocs:
-  description: Find out more about FaceQuest
-  url: 'https://facequest.io'
+  description: Example client using Node.js - Github Repository
+  url: 'https://github.com/facequest/sample-nodejs-client'
+
 servers:
   - url: 'https://verifyapi.facequest.io/api/v1'
 security:
@@ -57,7 +58,7 @@ paths:
       tags:
         - face-verification
       summary: Fetch upload URLs
-      description: Returns pre-signed URLs to upload reference photo and the photo to be validated
+      description: Returns pre-signed URLs to upload reference photo and the photo to be verified
       operationId: getUploadUrl
       x-codeSamples:
         - lang: Shell
