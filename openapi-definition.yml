@@ -57,7 +57,7 @@ paths:
       tags:
         - face-verification
       summary: Fetch upload URLs
-      description: Returns pre-signed URLs to upload reference face file and the file to be validated
+      description: Returns pre-signed URLs to upload reference photo and the photo to be validated
       operationId: getUploadUrl
       x-codeSamples:
         - lang: Shell
@@ -93,7 +93,7 @@ paths:
     post:
       tags:
         - face-verification
-      summary: Creates verification request
+      summary: Create verification request
       description: Creates a new verification request.  The progress of this request can be tracked asynchronously.
       operationId: verifyFaces
       x-codeSamples:
@@ -176,7 +176,7 @@ components:
         data:
           type: object
           properties:
-            referenceFace:
+            referencePhoto:
               type: object
               properties:
                 uploadUrl:
@@ -184,7 +184,7 @@ components:
                   format: uri
                 filePath:
                   type: string
-            faceToBeValidated:
+            photoToBeVerified:
               type: object
               properties:
                 uploadUrl:
@@ -197,8 +197,8 @@ components:
     VerificationRequest:
       type: object
       required:
-        - referenceFaceFilePath
-        - givenFaceFilePath
+        - referencePhotoFilePath
+        - photoToBeVerifiedFilePath
       properties:
         title:
           type: string
@@ -210,13 +210,13 @@ components:
           description: Optional notes for your use.  This will be returned along
             with the verification logs.
           required: false
-        referenceFaceFilePath:
+        referencePhotoFilePath:
           type: string
-          description: Value of `referenceFace.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
+          description: Value of `referencePhoto.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
           required: true
-        givenFaceFilePath:
+        photoToBeVerifiedFilePath:
           type: string
-          description: Value of `faceToBeValidated.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
+          description: Value of `photoToBeVerified.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
           required: true
 
     VerificationLog:
