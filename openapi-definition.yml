@@ -7,13 +7,18 @@ info:
     [https://facequest.io](https://facequest.io).
 
     <a href="/img/user-guide/verification_api_flow.svg" target="blank" title="Enlarge"><img src="/img/user-guide/verification_api_flow.svg"/></a>
+
+    <div>
+      <h6 class="dSJzNl">Example clients</h6>
+      <ul>
+       <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-nodejs-client' target="blank" title="NodeJs-Sample">Node.js Client - Github Repository <a/> </div>
+       <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-spring-boot-client' target="blank" title="NodeJs-Sample">Java Client - Github Repository <a/> </div>
+      </ul>
+    </div>
   termsOfService: 'https://facequest.io/terms-of-use'
   contact:
     email: support@facequest.io
   version: '1.0'
-externalDocs:
-  description: Example client using Node.js - Github Repository
-  url: 'https://github.com/facequest/sample-nodejs-client'
 
 servers:
   - url: 'https://verifyapi.facequest.io/api/v1'
