@@ -5,6 +5,8 @@ info:
     FaceQuest is a simple and developer-friendly FRaaS (Face Recognition as a
     Service).  You can find out more about FaceQuest at
     [https://facequest.io](https://facequest.io).
+
+    <a href="/img/user-guide/verification_api_flow.svg" target="blank" title="Enlarge"><img src="/img/user-guide/verification_api_flow.svg"/></a>
   termsOfService: 'https://facequest.io/terms-of-use'
   contact:
     email: support@facequest.io
