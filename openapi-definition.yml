@@ -12,7 +12,7 @@ info:
       <h6 class="dSJzNl">Example clients</h6>
       <ul>
        <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-nodejs-client' target="blank" title="NodeJs-Sample">Node.js Client - Github Repository <a/> </div>
-       <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-spring-boot-client' target="blank" title="NodeJs-Sample">Java Client - Github Repository <a/> </div>
+       <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-spring-boot-client' target="blank" title="Java-Sample">Java Client - Github Repository <a/> </div>
       </ul>
     </div>
   termsOfService: 'https://facequest.io/terms-of-use'
