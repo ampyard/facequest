@@ -7,13 +7,18 @@ info:
     [https://facequest.io](https://facequest.io).
 
     <a href="/img/user-guide/verification_api_flow.svg" target="blank" title="Enlarge"><img src="/img/user-guide/verification_api_flow.svg"/></a>
+
+    <div>
+      <h6 class="dSJzNl">Example clients</h6>
+      <ul>
+       <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-nodejs-client' target="blank" title="NodeJs-Sample">Node.js Client - Github Repository <a/> </div>
+       <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-spring-boot-client' target="blank" title="Java-Sample">Java Client - Github Repository <a/> </div>
+      </ul>
+    </div>
   termsOfService: 'https://facequest.io/terms-of-use'
   contact:
     email: support@facequest.io
   version: '1.0'
-externalDocs:
-  description: Example client using Node.js - Github Repository
-  url: 'https://github.com/facequest/sample-nodejs-client'
 
 servers:
   - url: 'https://verifyapi.facequest.io/api/v1'
@@ -54,6 +59,19 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/VerificationLog'
+        '401':
+          description: Unauthorized. This can be due to invalid credentials.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                  errorMessage:
+                    type: string
+                    description: >-
+                      An explanation of the error
       parameters: []
   /verification/uploadurl:
     get:
@@ -78,8 +96,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UploadUrlResponse'
+        '401':
+          description: Unauthorized. This can be due to invalid credentials.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                  errorMessage:
+                    type: string
+                    description: >-
+                      An explanation of the error
         '403':
-          description: Unauthorized.  This can be either due to insufficient credits or invalid credentials.
+          description: Forbidden. This can be either due to insufficient credits or expired trial account.
           content:
             application/json:
               schema:
@@ -97,7 +128,7 @@ paths:
       tags:
         - face-verification
       summary: Create verification request
-      description: Creates a new verification request.  The progress of this request can be tracked asynchronously.
+      description: Creates a new verification request. The progress of this request can be tracked asynchronously.
       operationId: verifyFaces
       x-codeSamples:
         - lang: Shell
@@ -126,8 +157,8 @@ paths:
                   verificationRequestId:
                     type: string
                     format: uuid
-        '403':
-          description: Unauthorized.  This can be either due to insufficient credits or invalid credentials.
+        '401':
+          description: Unauthorized. This can be due to invalid credentials.
           content:
             application/json:
               schema:
@@ -139,7 +170,19 @@ paths:
                     type: string
                     description: >-
                       An explanation of the error
-
+        '403':
+          description: Forbidden. This can be either due to insufficient credits or expired trial account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                  errorMessage:
+                    type: string
+                    description: >-
+                      An explanation of the error
   /verification/{verificationRequestId}:
     get:
       tags:
@@ -171,6 +214,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/VerificationLog'
+        '401':
+          description: Unauthorized. This can be due to invalid credentials.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                  errorMessage:
+                    type: string
+                    description: >-
+                      An explanation of the error
 components:
   schemas:
     UploadUrlResponse:
