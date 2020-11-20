@@ -3242,3 +3242,22 @@ h2 {
 pre{
   color:#ffffff
 }
+
+/******* Policy Area Styles ******************/
+
+.policy-area{
+
+}
+
+.policy-area ul{
+list-style:disc
+}
+
+.policy-area ol{
+list-style:decimal
+}
+
+.policy-area b{
+color: #000000;
+font-weight: bold
+}
