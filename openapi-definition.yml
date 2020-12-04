@@ -27,7 +27,10 @@ security:
   - Secret: []
     Email: []
     Constant-Authorization-Token: []
+
 tags:
+  - name: face-search
+    description: 'APIs for FaceQuest''s 1:n Face Search'
   - name: face-verification
     description: 'APIs for FaceQuest''s 1:1 Face verification'
 paths:
@@ -244,6 +247,21 @@ paths:
                     type: string
                     description: >-
                       An explanation of the error
+                      
+  /reference-faces/:name/folder/:folderId:
+    servers:
+      - url: 'https://app.facequest.io/api/v1'
+    post:
+      tags:
+        - face-search
+        
+  /folders/:name:
+    servers:
+      - url: 'https://app.facequest.io/api/v1'
+    post:
+      tags:
+        - face-search
+    
 components:
   schemas:
     UploadUrlResponse:
