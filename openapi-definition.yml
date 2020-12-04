@@ -22,6 +22,7 @@ info:
 
 servers:
   - url: 'https://verifyapi.facequest.io/api/v1'
+  - url: 'https://app.facequest.io/api/v1'
 security:
   - Secret: []
     Email: []
@@ -31,6 +32,8 @@ tags:
     description: 'APIs for FaceQuest''s 1:1 Face verification'
 paths:
   /verification/logs:
+    servers:
+      - url: 'https://verifyapi.facequest.io/api/v1'
     get:
       tags:
         - face-verification
@@ -74,6 +77,8 @@ paths:
                       An explanation of the error
       parameters: []
   /verification/uploadurl:
+    servers:
+      - url: 'https://verifyapi.facequest.io/api/v1'
     get:
       tags:
         - face-verification
@@ -124,11 +129,21 @@ paths:
                       An explanation of the error
       parameters: []
   /verification:
+    servers:
+      - url: 'https://verifyapi.facequest.io/api/v1'
     post:
       tags:
         - face-verification
-      summary: Create verification request
-      description: Creates a new verification request. The progress of this request can be tracked asynchronously.
+      summary:  Create verification request
+      description: |
+        Creates a new verification request with/without using the stored reference photo from folders. The progress of this request can be tracked asynchronously.
+        
+        | **Create verification without storage** | **Create verification with storage** |
+        | ------- | --------|
+        | `useStoredPhotoForReference` property in the VerificationRequest request body must be passed as \"false\" | `useStoredPhotoForReference` property in the VerificationRequest request body must be passed as \"true\"   |
+        |  | Reference photo does not need to be uploaded to the pre-signed url returned from `/api/v1/verification/uploadurl` Note: Photo to be verified has to be uploaded to the pre-signed url|
+        |  | `referencePhotoFilePath` property in the VerificationRequest request body should have valid UUID of the photo uploaded to the folder using `/api/v1/reference-faces/:name/folder/:folderId` API. In order to create folder, to upload the photo `/api/v1/folders/:name` API has to be used.  |
+        
       operationId: verifyFaces
       x-codeSamples:
         - lang: Shell
@@ -171,7 +186,7 @@ paths:
                     description: >-
                       An explanation of the error
         '403':
-          description: Forbidden. This can be either due to insufficient credits or expired trial account.
+          description: Forbidden. This can be either due to insufficient credits or expired trial account or your plan does not allow creating verification request with storage.
           content:
             application/json:
               schema:
@@ -184,6 +199,8 @@ paths:
                     description: >-
                       An explanation of the error
   /verification/{verificationRequestId}:
+    servers:
+      - url: 'https://verifyapi.facequest.io/api/v1'
     get:
       tags:
         - face-verification
@@ -253,11 +270,12 @@ components:
                   type: string
         errorMessage:
           type: string
-    VerificationRequest:
+    VerificationRequest: &anchor
       type: object
       required:
         - referencePhotoFilePath
         - photoToBeVerifiedFilePath
+        - useStoredPhotoForReference
       properties:
         title:
           type: string
@@ -271,13 +289,18 @@ components:
           required: false
         referencePhotoFilePath:
           type: string
-          description: Value of `referencePhoto.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
+          description: In case of creating verification request without storage, this should be the value of  `referencePhoto.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`. In case of verification request with storage, this should be the UUID of the photo in the folder
           required: true
         photoToBeVerifiedFilePath:
           type: string
           description: Value of `photoToBeVerified.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
           required: true
-
+        useStoredPhotoForReference:
+          type: string
+          description: "Supported values - \"true\" / \"false\".\n\n
+            \"true\" must be passed while creating verfication request with storage.\n\n
+            \"false\" must be  passed while creating verfication request without storage"
+          required: true 
     VerificationLog:
       type: object
       properties:
