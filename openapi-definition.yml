@@ -29,9 +29,9 @@ security:
     Constant-Authorization-Token: []
 
 tags:
-  - name: face-search
-    description: 'APIs for FaceQuest''s 1:n Face Search'
-  - name: face-verification
+  - name: Common 
+    description: Common utilitarian APIs to enable FaceQuest 
+  - name: Face-Verification
     description: 'APIs for FaceQuest''s 1:1 Face verification'
 paths:
   /verification/logs:
@@ -39,7 +39,7 @@ paths:
       - url: 'https://verifyapi.facequest.io/api/v1'
     get:
       tags:
-        - face-verification
+        - Face-Verification
       summary: Fetch verification logs
       operationId: getVerificationLogs
       x-codeSamples:
@@ -84,7 +84,7 @@ paths:
       - url: 'https://verifyapi.facequest.io/api/v1'
     get:
       tags:
-        - face-verification
+        - Face-Verification
       summary: Fetch upload URLs
       description: Returns pre-signed URLs to upload reference photo and the photo to be verified
       operationId: getUploadUrl
@@ -136,7 +136,7 @@ paths:
       - url: 'https://verifyapi.facequest.io/api/v1'
     post:
       tags:
-        - face-verification
+        - Face-Verification
       summary:  Create verification request
       description: |
         Creates a new verification request with/without using the stored reference photo from folders. The progress of this request can be tracked asynchronously.
@@ -206,7 +206,7 @@ paths:
       - url: 'https://verifyapi.facequest.io/api/v1'
     get:
       tags:
-        - face-verification
+        - Face-Verification
       summary: Track verification request
       description: Track any verification request using `verificationRequestId`, returned upon invoking `POST` request at URL `/api/v1/verification`
       parameters:
@@ -247,21 +247,120 @@ paths:
                     type: string
                     description: >-
                       An explanation of the error
-                      
-  /reference-faces/:name/folder/:folderId:
+          
+  /folders/{name}:
     servers:
       - url: 'https://app.facequest.io/api/v1'
     post:
       tags:
-        - face-search
-        
-  /folders/:name:
+        - Common
+      summary: Create folder
+      description: Creates a folder with the given name where the reference photos can be uploaded. Maximum limit of reference photos per folder is 100 
+      operationId: createFolder
+      parameters:
+        - name: name
+          in: path
+          description: Name of the folder to be created
+          required: true
+          schema:
+            type: string
+      x-codeSamples:
+        - lang: Shell
+          source: |
+            curl -X POST 'https://app.facequest.io/api/v1/folders/{name}' \
+            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+            -H 'email: email_id_registered_with_facequest' \
+            -H 'accept: application/json' \
+            -H 'authorizationtoken: bearer' \
+            --compressed
+      responses:
+        '200':
+          description: Folder created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    $ref: '#/components/schemas/Page'
+                  _embedded:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FolderResponse'
+        '403':
+          description: Invalid credentials.
+          
+  /folders:
     servers:
       - url: 'https://app.facequest.io/api/v1'
-    post:
+    get:
       tags:
-        - face-search
-    
+        - Common
+      summary: Retreive folders
+      x-codeSamples:
+        - lang: Shell
+          source: |
+            curl -X GET 'https://app.facequest.io/api/v1/folders' \
+            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+            -H 'email: email_id_registered_with_facequest' \
+            -H 'accept: application/json' \
+            -H 'authorizationtoken: bearer' \
+            --compressed
+      responses:
+        '200':
+          description: Folders retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    $ref: '#/components/schemas/Page'
+                  _embedded:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FolderResponse'
+        '403':
+            description: Invalid credentials.
+      
+  /folders/{folderId}:
+    servers:
+      - url: 'https://app.facequest.io/api/v1'
+    delete:
+      tags:
+        - Common
+      summary: Delete folder
+      description: Deletes a folder given any folderId
+      x-codeSamples:
+        - lang: Shell
+          source: |
+            curl -X DELETE 'https://app.facequest.io/api/v1/folders/{folderId}' \
+            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+            -H 'email: email_id_registered_with_facequest' \
+            -H 'accept: application/json' \
+            -H 'authorizationtoken: bearer' \
+            --compressed
+      responses:
+        '200':
+          description: Folder created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    description: UUID of the folder that has been requested for deletion
+                    type: string
+                    format: UUID
+                    example: db4c9444-3a7e-438e-ad7d-e486badff7df
+                  status:
+                    type: string
+                    enum: [
+                          "SUCCESS"
+                    ]
+        '403':
+            description: Invalid credentials.
+
 components:
   schemas:
     UploadUrlResponse:
@@ -288,7 +387,7 @@ components:
                   type: string
         errorMessage:
           type: string
-    VerificationRequest: &anchor
+    VerificationRequest: 
       type: object
       required:
         - referencePhotoFilePath
@@ -361,6 +460,36 @@ components:
         totalElements:
           type: integer
           example: 1
+    FolderResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426655440000
+          description: Unique Id of the folder
+        user_id: 
+          type: string
+          format: uuid
+          example: 1df0a952-3796-11ea-aec2-2e728ce83325
+          description: User Id that belongs to your FaceQuest account
+        name: 
+          type: string
+          example: Verification images
+          description: Name of the folder
+        parent_folder: 
+          default: null
+          type: 'null'
+        created:
+          type: string
+          description: Folder creation timestamp
+          example: 2020-12-08T08:55:19.847Z
+          format: datetime
+        last_updated: 
+          type: string
+          description: Timestamp signifies when the folder name was last modified
+          example: 2020-12-08T08:55:19.847Z
+          format: datetime
   securitySchemes:
     Email:
       type: apiKey
