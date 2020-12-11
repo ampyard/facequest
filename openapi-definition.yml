@@ -1,510 +1,847 @@
-openapi: 3.0.1
-info:
-  title: FaceQuest API
-  description: >-
-    FaceQuest is a simple and developer-friendly FRaaS (Face Recognition as a
-    Service).  You can find out more about FaceQuest at
-    [https://facequest.io](https://facequest.io).
+  openapi: 3.0.1
+  info:
+    title: FaceQuest API
+    description: >-
+      FaceQuest is a simple and developer-friendly FRaaS (Face Recognition as a
+      Service).  You can find out more about FaceQuest at
+      [https://facequest.io](https://facequest.io).
 
-    <a href="/img/user-guide/verification_api_flow.svg" target="blank" title="Enlarge"><img src="/img/user-guide/verification_api_flow.svg"/></a>
+      <a href="/img/user-guide/verification_api_flow.svg" target="blank" title="Enlarge"><img src="/img/user-guide/verification_api_flow.svg"/></a>
 
-    <div>
-      <h6 class="dSJzNl">Example clients</h6>
-      <ul>
-       <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-nodejs-client' target="blank" title="NodeJs-Sample">Node.js Client - Github Repository <a/> </div>
-       <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-spring-boot-client' target="blank" title="Java-Sample">Java Client - Github Repository <a/> </div>
-      </ul>
-    </div>
-  termsOfService: 'https://facequest.io/terms-of-use'
-  contact:
-    email: support@facequest.io
-  version: '1.0'
+      <div>
+        <h6 class="dSJzNl">Example clients</h6>
+        <ul>
+        <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-nodejs-client' target="blank" title="NodeJs-Sample">Node.js Client - Github Repository <a/> </div>
+        <div style="padding-top: 10px;"><a href='https://github.com/facequest/sample-spring-boot-client' target="blank" title="Java-Sample">Java Client - Github Repository <a/> </div>
+        </ul>
+      </div>
+    termsOfService: 'https://facequest.io/terms-of-use'
+    contact:
+      email: support@facequest.io
+    version: '1.0'
 
-servers:
-  - url: 'https://verifyapi.facequest.io/api/v1'
-  - url: 'https://app.facequest.io/api/v1'
-security:
-  - Secret: []
-    Email: []
-    Constant-Authorization-Token: []
+  servers:
+    - url: 'https://verifyapi.facequest.io/api/v1'
+    - url: 'https://app.facequest.io/api/v1'
+  security:
+    - Secret: []
+      Email: []
+      Constant-Authorization-Token: []
 
-tags:
-  - name: Common 
-    description: Common utilitarian APIs to enable FaceQuest 
-  - name: Face-Verification
-    description: 'APIs for FaceQuest''s 1:1 Face verification'
-paths:
-  /verification/logs:
-    servers:
-      - url: 'https://verifyapi.facequest.io/api/v1'
-    get:
-      tags:
-        - Face-Verification
-      summary: Fetch verification logs
-      operationId: getVerificationLogs
-      x-codeSamples:
-        - lang: Shell
-          source: |
-            curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/logs' \
-            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
-            -H 'email: email_id_registered_with_facequest' \
-            -H 'accept: application/json' \
-            -H 'authorizationtoken: bearer' \
-            --compressed
-      responses:
-        '200':
-          description: Fetch successful
+  tags:
+    - name: Common 
+      description: Common utilitarian APIs to enable FaceQuest 
+    - name: Face-Verification
+      description: 'APIs for FaceQuest''s 1:1 Face verification'
+  paths:
+    /verification/logs:
+      servers:
+        - url: 'https://verifyapi.facequest.io/api/v1'
+      get:
+        tags:
+          - Face-Verification
+        summary: Fetch verification logs
+        operationId: getVerificationLogs
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/logs' \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              --compressed
+        responses:
+          '200':
+            description: Fetch successful
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties: 
+                    page:
+                      $ref: '#/components/schemas/Page'
+                    _embedded:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/VerificationLog'
+          '401':
+            description: Unauthorized. This can be due to invalid credentials.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                    errorMessage:
+                      type: string
+                      description: >-
+                        An explanation of the error
+        parameters: []
+    
+    /verification/uploadurl:
+      servers:
+        - url: 'https://verifyapi.facequest.io/api/v1'
+      get:
+        tags:
+          - Face-Verification
+        summary: Fetch upload URLs
+        description: Returns pre-signed URLs to upload reference photo and the photo to be verified
+        operationId: getUploadUrl
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/uploadurl' \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              --compressed
+        responses:
+          '200':
+            description: Fetch successful
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UploadUrlResponse'
+          '401':
+            description: Unauthorized. This can be due to invalid credentials.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                    errorMessage:
+                      type: string
+                      description: >-
+                        An explanation of the error
+          '403':
+            description: Forbidden. This can be either due to insufficient credits or expired trial account.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                    errorMessage:
+                      type: string
+                      description: >-
+                        An explanation of the error
+        parameters: []
+    
+    /verification:
+      servers:
+        - url: 'https://verifyapi.facequest.io/api/v1'
+      post:
+        tags:
+          - Face-Verification
+        summary:  Create verification request
+        description: |
+          Creates a new verification request with/without using the stored reference photo from folders. The progress of this request can be tracked asynchronously.
+          
+          | **Create verification without storage** | **Create verification with storage** |
+          | ------- | --------|
+          | `useStoredPhotoForReference` property in the VerificationRequest request body must be passed as \"false\" | `useStoredPhotoForReference` property in the VerificationRequest request body must be passed as \"true\"   |
+          |  | Reference photo does not need to be uploaded to the pre-signed url returned from `/api/v1/verification/uploadurl` Note: Photo to be verified has to be uploaded to the pre-signed url|
+          |  | `referencePhotoFilePath` property in the VerificationRequest request body should have valid UUID of the photo uploaded to the folder using `/api/v1/reference-faces/:name/folder/:folderId` API. In order to create folder, to upload the photo `/api/v1/folders/:name` API has to be used.  |
+          
+        operationId: verifyFaces
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X POST 'https://verifyapi.facequest.io/api/v1/verification' \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              --compressed
+        requestBody:
+          description: Request body to be sent to initiate verification request
+          required: true
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  page:
-                    $ref: '#/components/schemas/Page'
-                  _embedded:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/VerificationLog'
-        '401':
-          description: Unauthorized. This can be due to invalid credentials.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                  errorMessage:
-                    type: string
-                    description: >-
-                      An explanation of the error
-      parameters: []
-  /verification/uploadurl:
-    servers:
-      - url: 'https://verifyapi.facequest.io/api/v1'
-    get:
-      tags:
-        - Face-Verification
-      summary: Fetch upload URLs
-      description: Returns pre-signed URLs to upload reference photo and the photo to be verified
-      operationId: getUploadUrl
-      x-codeSamples:
-        - lang: Shell
-          source: |
-            curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/uploadurl' \
-            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
-            -H 'email: email_id_registered_with_facequest' \
-            -H 'accept: application/json' \
-            -H 'authorizationtoken: bearer' \
-            --compressed
-      responses:
-        '200':
-          description: Fetch successful
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UploadUrlResponse'
-        '401':
-          description: Unauthorized. This can be due to invalid credentials.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                  errorMessage:
-                    type: string
-                    description: >-
-                      An explanation of the error
-        '403':
-          description: Forbidden. This can be either due to insufficient credits or expired trial account.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                  errorMessage:
-                    type: string
-                    description: >-
-                      An explanation of the error
-      parameters: []
-  /verification:
-    servers:
-      - url: 'https://verifyapi.facequest.io/api/v1'
-    post:
-      tags:
-        - Face-Verification
-      summary:  Create verification request
-      description: |
-        Creates a new verification request with/without using the stored reference photo from folders. The progress of this request can be tracked asynchronously.
-        
-        | **Create verification without storage** | **Create verification with storage** |
-        | ------- | --------|
-        | `useStoredPhotoForReference` property in the VerificationRequest request body must be passed as \"false\" | `useStoredPhotoForReference` property in the VerificationRequest request body must be passed as \"true\"   |
-        |  | Reference photo does not need to be uploaded to the pre-signed url returned from `/api/v1/verification/uploadurl` Note: Photo to be verified has to be uploaded to the pre-signed url|
-        |  | `referencePhotoFilePath` property in the VerificationRequest request body should have valid UUID of the photo uploaded to the folder using `/api/v1/reference-faces/:name/folder/:folderId` API. In order to create folder, to upload the photo `/api/v1/folders/:name` API has to be used.  |
-        
-      operationId: verifyFaces
-      x-codeSamples:
-        - lang: Shell
-          source: |
-            curl -X POST 'https://verifyapi.facequest.io/api/v1/verification' \
-            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
-            -H 'email: email_id_registered_with_facequest' \
-            -H 'accept: application/json' \
-            -H 'authorizationtoken: bearer' \
-            --compressed
-      requestBody:
-        description: Request body to be sent to initiate verification request
-        required: true
-        content:
-          application/json:
+                $ref: '#/components/schemas/VerificationRequest'
+        responses:
+          '200':
+            description: Successfully created face verification request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    verificationRequestId:
+                      type: string
+                      format: uuid
+          '401':
+            description: Unauthorized. This can be due to invalid credentials.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                    errorMessage:
+                      type: string
+                      description: >-
+                        An explanation of the error
+          '403':
+            description: Forbidden. This can be either due to insufficient credits or expired trial account or your plan does not allow creating verification request with storage.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                    errorMessage:
+                      type: string
+                      description: >-
+                        An explanation of the error
+    
+    /verification/{verificationRequestId}:
+      servers:
+        - url: 'https://verifyapi.facequest.io/api/v1'
+      get:
+        tags:
+          - Face-Verification
+        summary: Track verification request
+        description: Track any verification request using `verificationRequestId`, returned upon invoking `POST` request at URL `/api/v1/verification`
+        parameters:
+          - name: verificationRequestId
+            in: path
+            description: UUID of the verification request to fetch
+            required: true
             schema:
-              $ref: '#/components/schemas/VerificationRequest'
-      responses:
-        '200':
-          description: Successfully created face verification request
+              type: string
+              format: uuid
+        operationId: getVerificationStatus
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/{verificationRequestId}' \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              --compressed
+        responses:
+          '200':
+            description: Fetch successful
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/VerificationLog'
+          '401':
+            description: Unauthorized. This can be due to invalid credentials.
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    data:
+                      type: object
+                    errorMessage:
+                      type: string
+                      description: >-
+                        An explanation of the error
+            
+    /folders/{name}:
+      servers:
+        - url: 'https://app.facequest.io/api/v1'
+      post:
+        tags:
+          - Common
+        summary: Create folder
+        description: Creates a folder with the given name where the reference photos can be uploaded. Maximum limit of reference photos per folder is 100 
+        operationId: createFolder
+        parameters:
+          - name: name
+            in: path
+            description: Name of the folder to be created
+            required: true
+            schema:
+              type: string
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X POST 'https://app.facequest.io/api/v1/folders/{name}' \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              --compressed
+        responses:
+          '200':
+            description: Folder created successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    page:
+                      $ref: '#/components/schemas/Page'
+                    _embedded:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/FolderResponse'
+          '401':
+            description: This could be either due to invalid credentials or required auth headers absence
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+          '500':
+            description: Operation failed
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+    
+    /folders:
+      servers:
+        - url: 'https://app.facequest.io/api/v1'
+      get:
+        tags:
+          - Common
+        summary: Retreive folders
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X GET 'https://app.facequest.io/api/v1/folders' \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              --compressed
+        responses:
+          '200':
+            description: Folders retrieved successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    page:
+                      $ref: '#/components/schemas/Page'
+                    _embedded:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/FolderResponse'
+          '401':
+            description: This could be either due to invalid credentials or required auth headers absence
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+          '500':
+            description: Operation failed
+            content: {}
+
+    /folders/{folderId}:
+      servers:
+        - url: 'https://app.facequest.io/api/v1'
+      delete:
+        tags:
+          - Common
+        summary: Delete folder
+        description: Deletes a folder given any folderId
+        operationId: deleteFolder
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X DELETE 'https://app.facequest.io/api/v1/folders/{folderId}' \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              --compressed
+        parameters:
+          - name: folderId
+            in: path
+            description: UUID of the folder to delete
+            required: true
+            schema:
+              type: string
+              format: uuid
+        responses:
+          '200':
+            description: Folder created successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      description: UUID of the folder that has been requested for deletion
+                      type: string
+                      format: UUID
+                      example: db4c9444-3a7e-438e-ad7d-e486badff7df
+                    status:
+                      type: string
+                      enum: [
+                            "SUCCESS"
+                      ]
+          '401':
+            description: This could be either due to invalid credentials or required auth headers absence
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+          '500':
+            description: Operation failed
+            content: {}
+
+    /reference-faces/{name}/folder/{folderId}:
+      servers:
+        - url: 'https://app.facequest.io/api/v1'
+      post:
+        tags:
+          - Common
+        summary: Create reference photo
+        description: Creates a reference photo with the given name within the given folder 
+        operationId: createWatchedPersonWithPhotoInFolder
+        requestBody:
           content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  verificationRequestId:
-                    type: string
-                    format: uuid
-        '401':
-          description: Unauthorized. This can be due to invalid credentials.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
+            multipart/form-data:
+                  schema:            # Request payload
+                    description: Image file containing exactly one face
+                    required:
+                      - file
                     type: object
-                  errorMessage:
-                    type: string
-                    description: >-
-                      An explanation of the error
-        '403':
-          description: Forbidden. This can be either due to insufficient credits or expired trial account or your plan does not allow creating verification request with storage.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                  errorMessage:
-                    type: string
-                    description: >-
-                      An explanation of the error
-  /verification/{verificationRequestId}:
-    servers:
-      - url: 'https://verifyapi.facequest.io/api/v1'
-    get:
-      tags:
-        - Face-Verification
-      summary: Track verification request
-      description: Track any verification request using `verificationRequestId`, returned upon invoking `POST` request at URL `/api/v1/verification`
-      parameters:
-        - name: verificationRequestId
+                    properties: 
+                      file:
+                        type: string
+                        format: binary
+                  encoding:
+                    file:
+                      contentType: image/png, image/jpeg
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X POST \
+              https://app.facequest.io/api/v1/reference-faces/{name}/folder/{folderId} \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              -H 'content-type: multipart/form-data' \
+              -F file=@upload.jpg
+        parameters:
+          - name: name
+            in: path
+            description: Reference photo name
+            required: true
+            schema:
+              type: string
+          - name: folderId
+            in: path
+            description: UUID of the folder to which the reference photo is to be uploaded
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Reference photo uploaded to the given folder successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      description: UUID of the reference photo that has been uploaded
+                      type: string
+                      format: UUID
+                      example: db4c9444-3a7e-438e-ad7d-e486badff7df
+                    status:
+                      type: string
+                      enum: [
+                            "SUCCESS"
+                      ]
+          '401':
+            description: This could be either due to invalid credentials or required auth headers absence
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+          '500':
+            description: Operation failed
+            content: {}
+
+    /reference-faces/folder/{folderId}:
+      servers:
+        - url: 'https://app.facequest.io/api/v1'
+      get:
+        tags:
+          - Common
+        summary: Retrieve reference photos 
+        description: Retrives reference photos from the given folder 
+        operationId: getPhotosInFolder
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X GET \
+              https://app.facequest.io/api/v1/reference-faces/folder/{folderId} \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              --compressed
+        parameters:
+          - name: folderId
+            in: path
+            description: Id of the folder containing reference photo
+            required: true
+            schema:
+              type: string
+              format: UUID
+              example: 32fc31f5-29d4-42e7-b1dd-f1655a64efbf
+        responses:
+          '200':
+            description: Reference photos retrieved successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    page:
+                      $ref: '#/components/schemas/Page'
+                    _embedded:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PhotoResponse'
+          '401':
+            description: This could be either due to invalid credentials or required auth headers absence
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+          '500':
+            description: Operation failed
+            content: {}
+    
+    /reference-faces/{photoId}:
+      servers:
+        - url: 'https://app.facequest.io/api/v1'
+      delete:
+        tags:
+          - Common
+        summary: Delete the reference photo with a given id
+        operationId: deletePhoto
+        parameters:
+        - name: photoId
           in: path
-          description: UUID of the verification request to fetch
+          description: ID of the reference photo to be deleted
           required: true
           schema:
+            type: string
+        x-codeSamples:
+          - lang: Shell
+            source: |
+              curl -X DELETE 'https://app.facequest.io/api/v1/reference-faces/{photoId}' \
+              -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+              -H 'email: email_id_registered_with_facequest' \
+              -H 'accept: application/json' \
+              -H 'authorizationtoken: bearer' \
+              --compressed
+        responses:
+          '200':
+            description: Deleted successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      description: UUID of the reference photo requested for deletion
+                      type: string
+                      format: UUID
+                      example: db4c9444-3a7e-438e-ad7d-e486badff7df
+                    status:
+                      type: string
+                      enum: [
+                            "SUCCESS"
+                      ]
+          '500':
+            description: Operation failed
+            content: {}
+          '401':
+            description: This could be either due to invalid credentials or required auth headers absence
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+
+    /reference-faces/replace-photo/{photoId}:
+      servers:
+        - url: 'https://app.facequest.io/api/v1'
+      put:
+        tags:
+          - Common
+        summary: Replace the reference photo with another photo
+        operationId: addPhotoForPerson
+        requestBody:
+            content:
+              multipart/form-data:
+                    schema:            # Request payload
+                      required:
+                        - file
+                      type: object
+                      properties: 
+                        file:
+                          type: string
+                          format: binary
+                          description: Image file containing exactly one face
+                    encoding:
+                      file:
+                        contentType: image/png, image/jpeg
+        x-codeSamples:
+          - lang: Shell
+            source: |
+                curl -X PUT \
+                https://app.facequest.io/api/v1/reference-faces/replace-photo/{photoId} \
+                -H 'secret: secret_that_i_set_in_facequest_web_ui' \
+                -H 'email: email_id_registered_with_facequest' \
+                -H 'accept: application/json' \
+                -H 'authorizationtoken: bearer' \
+                -H 'content-type: multipart/form-data' \
+                -F file=@upload.jpg
+        parameters:
+          - name: photoId
+            in: path
+            description: UUID of the folder to replace
+            required: true
+            schema:
+              type: string
+              format: uuid
+        responses:
+          '200':
+            description: Replaced successfully
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      description: UUID of the reference photo requested to be replaced
+                      type: string
+                      format: UUID
+                      example: cdef9444-3a7e-438e-ad7d-e486badff7df
+                    status:
+                      type: string
+                      enum: [
+                            "SUCCESS"
+                      ]
+          '500':
+            description: Operation failed
+            content: {}
+          '401':
+            description: This could be either due to invalid credentials or required auth headers absence
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+          '403':
+              description: Forbidden. This can be either due to insufficient credits or expired trial account or your plan does not allow creating verification request with storage.
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        description: >-
+                          An explanation of the error
+
+  components:
+    schemas:
+      UploadUrlResponse:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              referencePhoto:
+                type: object
+                properties:
+                  uploadUrl:
+                    type: string
+                    format: uri
+                  filePath:
+                    type: string
+              photoToBeVerified:
+                type: object
+                properties:
+                  uploadUrl:
+                    type: string
+                    format: uri
+                  filePath:
+                    type: string
+          errorMessage:
+            type: string
+      VerificationRequest: 
+        type: object
+        required:
+          - referencePhotoFilePath
+          - photoToBeVerifiedFilePath
+          - useStoredPhotoForReference
+        properties:
+          title:
+            type: string
+            description: Optional title for the request.  This will be returned along
+              with the verification logs. Only JPG/PNG images are supported.
+            required: false
+          notes:
+            type: string
+            description: Optional notes for your use.  This will be returned along
+              with the verification logs.
+            required: false
+          referencePhotoFilePath:
+            type: string
+            description: In case of creating verification request without storage, this should be the value of  `referencePhoto.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`. In case of verification request with storage, this should be the UUID of the photo in the folder
+            required: true
+          photoToBeVerifiedFilePath:
+            type: string
+            description: Value of `photoToBeVerified.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
+            required: true
+          useStoredPhotoForReference:
+            type: string
+            description: "Supported values - \"true\" / \"false\".\n\n
+              \"true\" must be passed while creating verfication request with storage.\n\n
+              \"false\" must be  passed while creating verfication request without storage"
+            required: true 
+      VerificationLog:
+        type: object
+        properties:
+          id:
             type: string
             format: uuid
-      operationId: getVerificationStatus
-      x-codeSamples:
-        - lang: Shell
-          source: |
-            curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/{verificationRequestId}' \
-            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
-            -H 'email: email_id_registered_with_facequest' \
-            -H 'accept: application/json' \
-            -H 'authorizationtoken: bearer' \
-            --compressed
-      responses:
-        '200':
-          description: Fetch successful
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VerificationLog'
-        '401':
-          description: Unauthorized. This can be due to invalid credentials.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                  errorMessage:
-                    type: string
-                    description: >-
-                      An explanation of the error
-          
-  /folders/{name}:
-    servers:
-      - url: 'https://app.facequest.io/api/v1'
-    post:
-      tags:
-        - Common
-      summary: Create folder
-      description: Creates a folder with the given name where the reference photos can be uploaded. Maximum limit of reference photos per folder is 100 
-      operationId: createFolder
-      parameters:
-        - name: name
-          in: path
-          description: Name of the folder to be created
-          required: true
-          schema:
+            example: 123e4567-e89b-12d3-a456-426655440000
+          result:
             type: string
-      x-codeSamples:
-        - lang: Shell
-          source: |
-            curl -X POST 'https://app.facequest.io/api/v1/folders/{name}' \
-            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
-            -H 'email: email_id_registered_with_facequest' \
-            -H 'accept: application/json' \
-            -H 'authorizationtoken: bearer' \
-            --compressed
-      responses:
-        '200':
-          description: Folder created successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  page:
-                    $ref: '#/components/schemas/Page'
-                  _embedded:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FolderResponse'
-        '403':
-          description: Invalid credentials.
-          
-  /folders:
-    servers:
-      - url: 'https://app.facequest.io/api/v1'
-    get:
-      tags:
-        - Common
-      summary: Retreive folders
-      x-codeSamples:
-        - lang: Shell
-          source: |
-            curl -X GET 'https://app.facequest.io/api/v1/folders' \
-            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
-            -H 'email: email_id_registered_with_facequest' \
-            -H 'accept: application/json' \
-            -H 'authorizationtoken: bearer' \
-            --compressed
-      responses:
-        '200':
-          description: Folders retrieved successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  page:
-                    $ref: '#/components/schemas/Page'
-                  _embedded:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/FolderResponse'
-        '403':
-            description: Invalid credentials.
-      
-  /folders/{folderId}:
-    servers:
-      - url: 'https://app.facequest.io/api/v1'
-    delete:
-      tags:
-        - Common
-      summary: Delete folder
-      description: Deletes a folder given any folderId
-      x-codeSamples:
-        - lang: Shell
-          source: |
-            curl -X DELETE 'https://app.facequest.io/api/v1/folders/{folderId}' \
-            -H 'secret: secret_that_i_set_in_facequest_web_ui' \
-            -H 'email: email_id_registered_with_facequest' \
-            -H 'accept: application/json' \
-            -H 'authorizationtoken: bearer' \
-            --compressed
-      responses:
-        '200':
-          description: Folder created successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    description: UUID of the folder that has been requested for deletion
-                    type: string
-                    format: UUID
-                    example: db4c9444-3a7e-438e-ad7d-e486badff7df
-                  status:
-                    type: string
-                    enum: [
-                          "SUCCESS"
-                    ]
-        '403':
-            description: Invalid credentials.
+            enum:
+              - FAILED_NEED_HUMAN_REVIEW
+              - ERROR
+              - SUCCESS
+              - PENDING
+          matchPercentage:
+            type: number
+            format: double
+            example: 89.34
+          title:
+            type: string
+            example: Verification for User 346
+            description: Optional title specified in the request
+          notes:
+            type: string
+            example: This is a request to verify user 346
+          errorMessage:
+            type: string
+            example: More than one faces found in reference photo
+            description: >-
+              An explanation of the error if verification process could not be
+              finished.  Relevant when result is ERROR
+      Page:
+        type: object
+        properties:
+          totalElements:
+            type: integer
+            example: 1
+      ErrorResponse:
+        type: object
+        properties:
+          message:
+            type: string
+      FolderResponse:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426655440000
+            description: Unique Id of the folder
+          user_id: 
+            type: string
+            format: uuid
+            example: 1df0a952-3796-11ea-aec2-2e728ce83325
+            description: User Id that belongs to your FaceQuest account
+          name: 
+            type: string
+            example: Verification images
+            description: Name of the folder
+          parent_folder: 
+            default: null
+            type: 'null'
+          created:
+            type: string
+            description: Folder creation timestamp
+            example: 2020-12-08T08:55:19.847Z
+            format: datetime
+          last_updated: 
+            type: string
+            description: Timestamp signifies when the folder name was last modified
+            example: 2020-12-08T08:55:19.847Z
+            format: datetime
+      PhotoResponse:
+        type: object
+        properties:
+          id: 
+            type: string
+            format: uuid
+            example: 5f42d765-c26c-436a-92a5-36803412125a
+            description: Unique Id of the reference photo
+          name:
+            type: string
+            example: John Doe
+            description: Name to refer the person in the photo
+          owned_by_user: 
+            type: string
+            format: uuid
+            example: 1df0a952-3796-11ea-aec2-2e728ce34125
+            description: User Id that belongs to your FaceQuest account 
+          last_detected_time: 
+            default: null
+            type: string
+            format: datetime
+            example: 2020-12-08T08:55:19.847Z
+            description: Timestamp denoting when this photo was last detected in the Face Search
+          picture_url: 
+            type: string
+            format: url
+            example: https://mk6kd5pdmpkiyr.s3.amazonaws.com/reference/8adare24-f3b8-4a2b-bd98-f0cb19245754.jpeg?AWSAccessKeyId=AKIARNEJIER6A2OHGS6C&Expires=1607675535&Signature=VaUw946p15htqh2wy8IcOqQBQDg%3D
+            description: URL of the picture in AWS
+          folder_id: 
+            type: string
+            format: uuid
+            example: 123e4567-e89b-12d3-a456-426655440000
+            description: Unique Id of the folder
+          face_encoding: 
+            default: null
+            type: string
+            format: double
 
-components:
-  schemas:
-    UploadUrlResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            referencePhoto:
-              type: object
-              properties:
-                uploadUrl:
-                  type: string
-                  format: uri
-                filePath:
-                  type: string
-            photoToBeVerified:
-              type: object
-              properties:
-                uploadUrl:
-                  type: string
-                  format: uri
-                filePath:
-                  type: string
-        errorMessage:
-          type: string
-    VerificationRequest: 
-      type: object
-      required:
-        - referencePhotoFilePath
-        - photoToBeVerifiedFilePath
-        - useStoredPhotoForReference
-      properties:
-        title:
-          type: string
-          description: Optional title for the request.  This will be returned along
-            with the verification logs. Only JPG/PNG images are supported.
-          required: false
-        notes:
-          type: string
-          description: Optional notes for your use.  This will be returned along
-            with the verification logs.
-          required: false
-        referencePhotoFilePath:
-          type: string
-          description: In case of creating verification request without storage, this should be the value of  `referencePhoto.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`. In case of verification request with storage, this should be the UUID of the photo in the folder
-          required: true
-        photoToBeVerifiedFilePath:
-          type: string
-          description: Value of `photoToBeVerified.filePath` of the response returned upon invoking `/api/v1/verification/uploadurl`
-          required: true
-        useStoredPhotoForReference:
-          type: string
-          description: "Supported values - \"true\" / \"false\".\n\n
-            \"true\" must be passed while creating verfication request with storage.\n\n
-            \"false\" must be  passed while creating verfication request without storage"
-          required: true 
-    VerificationLog:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: 123e4567-e89b-12d3-a456-426655440000
-        result:
-          type: string
-          enum:
-            - FAILED_NEED_HUMAN_REVIEW
-            - ERROR
-            - SUCCESS
-            - PENDING
-        matchPercentage:
-          type: number
-          format: double
-          example: 89.34
-        title:
-          type: string
-          example: Verification for User 346
-          description: Optional title specified in the request
-        notes:
-          type: string
-          example: This is a request to verify user 346
-        errorMessage:
-          type: string
-          example: More than one faces found in reference photo
-          description: >-
-            An explanation of the error if verification process could not be
-            finished.  Relevant when result is ERROR
-    ErrorResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-    Page:
-      type: object
-      properties:
-        totalElements:
-          type: integer
-          example: 1
-    FolderResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: 123e4567-e89b-12d3-a456-426655440000
-          description: Unique Id of the folder
-        user_id: 
-          type: string
-          format: uuid
-          example: 1df0a952-3796-11ea-aec2-2e728ce83325
-          description: User Id that belongs to your FaceQuest account
-        name: 
-          type: string
-          example: Verification images
-          description: Name of the folder
-        parent_folder: 
-          default: null
-          type: 'null'
-        created:
-          type: string
-          description: Folder creation timestamp
-          example: 2020-12-08T08:55:19.847Z
-          format: datetime
-        last_updated: 
-          type: string
-          description: Timestamp signifies when the folder name was last modified
-          example: 2020-12-08T08:55:19.847Z
-          format: datetime
-  securitySchemes:
-    Email:
-      type: apiKey
-      description: Email registered with FaceQuest
-      name: email
-      in: header
-    Secret:
-      type: apiKey
-      description: FaceQuest API secret key that you set from FaceQuest Web UI (https://app.facequest.io/#/accountsettings)
-      name: secret
-      in: header
-    Constant-Authorization-Token:
-      type: apiKey
-      description: A constant value `bearer` for all requests issued via API
-      name: authorizationtoken
-      in: header
-  links: {}
-  callbacks: {}
+
+
+    securitySchemes:
+      Email:
+        type: apiKey
+        description: Email registered with FaceQuest
+        name: email
+        in: header
+      Secret:
+        type: apiKey
+        description: FaceQuest API secret key that you set from FaceQuest Web UI (https://app.facequest.io/#/accountsettings)
+        name: secret
+        in: header
+      Constant-Authorization-Token:
+        type: apiKey
+        description: A constant value `bearer` for all requests issued via API
+        name: authorizationtoken
+        in: header
+    links: {}
+    callbacks: {}
