@@ -3305,7 +3305,8 @@ font-weight: bold
 }
 
 .typewriter-text{
+font-size:larger;
 color: #ffffff;
 text-decoration: underline;
-text-decoration-color: #ffd420  ;
+text-decoration-color: #ffd420;
 }
