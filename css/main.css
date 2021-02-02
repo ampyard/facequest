@@ -762,7 +762,11 @@ td, th {
   font-size: 24px
 }
 
-b, sup, sub, u, del {
+.primary-color-text{
+ color:#481380;
+}
+
+b, sub, u, del {
   color: #3bacf0
 }
 
