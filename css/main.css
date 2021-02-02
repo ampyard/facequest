@@ -1999,9 +1999,16 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   color: #fff;
   font-weight: 100;
-  font-size: 20px;
+  font-size: 19px;
   font-family: 'Patua One', cursive;
   outline: none
+}
+
+
+.nav-menu a:hover {
+  text-decoration: underline;
+  text-decoration-color: #ffd420;
+
 }
 
 .nav-menu>li {
@@ -3365,3 +3372,11 @@ font-weight: bold
 background-color: #2E8B57;
 border-radius: 30px;
 }
+
+.navbar-btn:hover {
+text-decoration:none !important;
+background-color: #008080;
+border-radius: 30px;
+}
+
+
