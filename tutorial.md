@@ -33,7 +33,7 @@ This will return the result of your face match in percentage(%). For example “
 <br/>
 <br/>
 
-### How to upload photo in FaceQuest® cloud by creating folders?
+### How to upload photo in FaceQuest® cloud by creating folders (For 1:N Face Match)? {#create-folder}
 <br/>
 In this section we have to upload reference photo to the facequest cloud bucket by creating folders. 
 User having cloud storage plan can user this functionality, so that you do not need to manually upload 
@@ -47,7 +47,7 @@ Type the name of the folder and click on the create button to create a new folde
 
 <br/>
 
-#### How to upload photo in folder?
+#### How to upload photo in folder? {#upload-photo-in-folder}
 
 To upload a photo click on the folder icon, a new window will open there where you can upload photos in particular folders.
 
@@ -63,7 +63,8 @@ given below the image. By clicking it you are able to replace, rename or delete 
 *Example: Upload photo in folder*
 
 <br/>
-### How to Perform Face Verification with Cloud Storage (1:N Face Match)?
+
+### How to Perform Face Verification with Cloud Storage (1:N Face Match)? {#cloud-face-verify}
 <br/>
 In the previous tutorial you have created a folder and uploaded a photo in it. To verify faces we have two options (1:1 Face match) which we have discussed at starting, you can manually upload photos. Here in 1:N Face Match we don’t have to upload Reference Photo manually. We can directly select one from folders that we have uploaded earlier in the reference faces section.
 
@@ -98,7 +99,7 @@ You can see your all verification records in the Face verification Logs section 
 
 <br/>
 
-### How to do face search using Quests?
+### How to do Face Search using Quests? {#quests}
 
 <br/>
 To perform verification using Quest you just have to select the folder name from dropdown menus. By clicking on the green camera icon you can upload photo that you have to match with your saved photos in your Database.
@@ -111,7 +112,7 @@ After you have selected your photo from your device’s local storage, you see t
 
 <br/>
 
-### Account Setting
+### Account Setting {#account-setting}
 
 <br/>
 In this section you have to see all your account information, remaining credits, reference faces and remaining transections. See this example given below.
@@ -120,7 +121,7 @@ In this section you have to see all your account information, remaining credits,
 *Example: Account Balance Details*
 
 
-#### Purchase Credits:
+#### Purchase Credits: {#purchase-credit}
 
 <br/>
 You can purchase credit also form this section by providing payment information. You can buy credits using a Debit card, Credit card, or UPI. By clicking the Pay button payment popup appeared.
@@ -132,7 +133,7 @@ You can purchase credits between 1 to 500 (max). Each credit costs 1$ or 72 indi
 
 <br/>
 
-#### Setting up Secret Key:
+#### Setting up Secret Key: {#secret-key}
 
 <br/>
 If you are using API’s of Facequest you need to set an API secret for secure access of your API. You can set secret in Reset API Secret section. Don’t forget to remember this secret key, once you have set this secret key you can’t see this key.
@@ -143,7 +144,7 @@ If you are using API’s of Facequest you need to set an API secret for secure a
 
 <br/>
 
-#### Setting up Billing Details:
+#### Setting up Billing Details: {#billing-details}
 
 <br/>
 You can add your billing details in this section like company name, address if your company, GST Number (Applicable to indian consumers only).
@@ -155,7 +156,7 @@ You can add your billing details in this section like company name, address if y
 
 <br/>
 
-#### How to upgrade your plan?
+#### How to upgrade your plan? {#upgrade-plan}
 
 <br/>
 In the upgrade section you can see different plans and you can upgrade to any plan that is suitable for you. There are various plans like lite, pro and business for monthly and yearly plans
@@ -171,7 +172,7 @@ To upgrade to any plan just click the upgrade button and payment popup will be o
 
 <br/>
 
-#### User Profile Section:
+#### User Profile Section: {#user-profile}
 
 <br/>
 To see all user information just click on user profile page where all user information is given like <b>username, emailId, phone number, company details </b> etc.
