@@ -2258,10 +2258,56 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .banner-content {
   margin-top: 50px;
-  text-align: left
+  text-align: left;
+}
+
+@media (max-width: 991.98px) {
+    .banner-content {
+      text-align: center;
+    }
+}
+
+.banner-content-right {
+  margin-top: 10px;
+  text-align: left;
+}
+
+@media (max-width: 991.98px) {
+    .banner-content-right {
+      text-align: center;
+    }
 }
 
 .banner-description {
+font-family: 'Roboto', sans-serif;
+  text-align: left;
+  color: #ffffff;
+}
+
+.banner-description-mobile {
+font-family: 'Roboto', sans-serif;
+  text-align: center;
+  color: #ffffff;
+  display:none;
+}
+
+.banner-description-mobile sup {
+font-family: 'Roboto', sans-serif;
+  text-align: center;
+  color: #ffffff;
+}
+
+@media (max-width: 991.98px) {
+    .banner-description{
+      display: none;
+    }
+
+    .banner-description-mobile{
+      display: block;
+    }
+}
+
+.banner-description sup {
 font-family: 'Roboto', sans-serif;
   text-align: left;
   color: #ffffff;
@@ -2296,6 +2342,10 @@ max-height:100%;
 
   .banner-description {
   display:none
+  }
+
+  .banner-image{
+  padding-bottom: 20%;
   }
 }
 
@@ -3305,8 +3355,9 @@ font-weight: bold
 }
 
 .typewriter-text{
-font-size:larger;
-color: #ffffff;
-text-decoration: underline;
-text-decoration-color: #ffd420;
+    font-size:larger;
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-color: #ffd420;
 }
+
