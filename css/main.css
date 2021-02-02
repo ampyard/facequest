@@ -762,7 +762,11 @@ td, th {
   font-size: 24px
 }
 
-b, sup, sub, u, del {
+.primary-color-text{
+ color:#481380;
+}
+
+b, sub, u, del {
   color: #3bacf0
 }
 
@@ -1983,7 +1987,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 1024px) {
   #nav-menu-container {
-    padding-right: 60px
+    padding-right: 10px
   }
 }
 
@@ -1999,9 +2003,16 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   color: #fff;
   font-weight: 100;
-  font-size: 20px;
+  font-size: 19px;
   font-family: 'Patua One', cursive;
   outline: none
+}
+
+
+.nav-menu a:hover {
+  text-decoration: underline;
+  text-decoration-color: #ffd420;
+
 }
 
 .nav-menu>li {
@@ -3360,4 +3371,16 @@ font-weight: bold
     text-decoration: underline;
     text-decoration-color: #ffd420;
 }
+
+.navbar-btn {
+background-color: #2E8B57;
+border-radius: 30px;
+}
+
+.navbar-btn:hover {
+text-decoration:none !important;
+background-color: #008080;
+border-radius: 30px;
+}
+
 
