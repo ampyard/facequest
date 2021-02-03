@@ -6,6 +6,7 @@ permalink: /tutorial
 
 ## Face verification Tutorial using UI
 
+
 <br/>
 
 ### How to perform Facial Recognition (1:1 Face Match)?
@@ -75,7 +76,7 @@ In the previous tutorial you have created a folder and uploaded a photo in it. T
 
 In the above picture you can see two drop down menus, one for select folder and other one for select photo from folder that you have selected. After selecting the folder name and photo you can see the selected photo in “Reference Photo” section.
 
-Now, you just have to upload the photo in the “Photo to be verified” section by clicking the camera icon. Then there is an option for add notes and title for this verification, so you can identify this verification later. Although it is optional, it is better to add some notes for face verification.
+Now, you just have to upload the photo in the “Photo to be verified” section by clicking the camera icon. Then there is an option to add notes and title for this verification, so you can identify this verification later. Although it is optional, it is better to add some notes for face verification.
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/verify-result.jpg" alt="face-verification-result">
@@ -102,9 +103,9 @@ You can see your all verification records in the Face verification Logs section 
 ### How to do Face Search using Quests? {#quests}
 
 <br/>
-To perform verification using Quest you just have to select the folder name from dropdown menus. By clicking on the green camera icon you can upload photo that you have to match with your saved photos in your Database.
+To perform verification using Quest you just have to select the folder name from dropdown menus. By clicking on the green camera icon you can upload photos that you have to match with your saved photos in your Database.
 
-After you have selected your photo from your device’s local storage, you see the success message like “Quest is started successfully”. After some time you see the result in the status section given in this picture with a timestamp, detected faces etc.
+After you have selected your photos from your device’s local storage, you see the success message like “Quest is started successfully”. After some time you see the result in the status section given in this picture with a timestamp, detected faces etc.
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/quest.jpg" alt="face-verification-logs">
@@ -175,7 +176,7 @@ To upgrade to any plan just click the upgrade button and payment popup will be o
 #### User Profile Section: {#user-profile}
 
 <br/>
-To see all user information just click on user profile page where all user information is given like <b>username, emailId, phone number, company details </b> etc.
+To see all user information just click on the user profile page where all user information is given like <b>username, email Id, phone number, company details </b> etc.
 
 
 <br/>
