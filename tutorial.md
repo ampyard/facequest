@@ -19,11 +19,11 @@ with the one present in their ID. Save a significant amount on manual verificati
 Here in this example we have performed facial recognition by manually uploading photos.
 
 <img class="img-fluid" src="./img/tutorial/verify-face.jpg" alt="face-verification">
-*Example: Face verifiaction by manually uploading photo*
+*Example: Face verifiction by manually uploading photo*
 
 <br/>
 
-#### Steps to performe face verification:
+#### Steps to perform face verification:
 <br/>
 1. You just have to upload a reference photo by clicking on the camera icon from your device's local storage.
 2. In photo to be verified you have to upload a photo that is to be verified with the first one.
@@ -48,17 +48,15 @@ Type the name of the folder and click on the create button to create a new folde
 
 <br/>
 
-#### How to upload photo in folder? {#upload-photo-in-folder}
+#### How to upload photo in a folder? {#upload-photo-in-folder}
 
 To upload a photo click on the folder icon, a new window will open there where you can upload photos in particular folders.
 
 In this window you see an input box where you can enter the name of the photo to upload and then click on <b>“Attach
-Photo”</b> button to select the photo from your device's local storage. This upload photo in this folder. There is a
-success message appeared at the top right corner of the website that shows <b>“Reference Face created successfully”</b>.
-You can see it anytime.
+Photo”</b> button to select the photo from your device's local storage. Now, the photo is uploaded to the current folder. A message will appear on the top right corner of the screen. <b>“Reference Face created successfully”</b>.
+
 <br>
-If you want to rename, delete or replace this photo that you have uploaded. There is a replace and delete button
-given below the image. By clicking it you are able to replace, rename or delete photos.
+If you want to rename, delete or replace this photo that you have uploaded. Below the image, there is a replace button to replace the photo with an alternate photo. Next to it, there is a delete button to delete the reference face.
 
 <img class="img-fluid" src="./img/tutorial/upload-photo-to-folder.jpg" alt="upload-photo">
 *Example: Upload photo in folder*
@@ -74,13 +72,14 @@ In the previous tutorial you have created a folder and uploaded a photo in it. T
 *Note: If you have a plan that has cloud storage available you can use this feature.*
 
 
-In the above picture you can see two drop down menus, one for select folder and other one for select photo from folder that you have selected. After selecting the folder name and photo you can see the selected photo in “Reference Photo” section.
+In the above picture, you can see two dropdown menus. The first one is for selecting the folder and the other one is for selecting a reference face photo. After selecting the folder name and photo you can see the selected photo in “Reference Photo” section.
 
 Now, you just have to upload the photo in the “Photo to be verified” section by clicking the camera icon. Then there is an option to add notes and title for this verification, so you can identify this verification later. Although it is optional, it is better to add some notes for face verification.
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/verify-result.jpg" alt="face-verification-result">
-*Example: Verifiaction-result*
+
+*Example: Verifiaction Result*
 
 <br/>
 Then you have to click the “Verify” button to perform a face match, then after you can see the result of your face match (given in %). You see a message like in the picture below.
@@ -93,7 +92,8 @@ That’s it you have successfully matched faces and get the result of verificati
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/verification-logs.jpg" alt="face-verification-logs">
-*Example: Verifiaction Logs*
+
+*Example: Verifiction Logs*
 
 <br/>
 You can see your all verification records in the Face verification Logs section like this. Where verification logs are given with title, notes and time stamp.
@@ -105,7 +105,7 @@ You can see your all verification records in the Face verification Logs section 
 <br/>
 To perform verification using Quest you just have to select the folder name from dropdown menus. By clicking on the green camera icon you can upload photos that you have to match with your saved photos in your Database.
 
-After you have selected your photos from your device’s local storage, you see the success message like “Quest is started successfully”. After some time you see the result in the status section given in this picture with a timestamp, detected faces etc.
+After you have selected your photos from your device’s local storage, you see the success message like “Quest started successfully”. After some time you see the result in the status section given in this picture with a timestamp, detected faces etc.
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/quest.jpg" alt="face-verification-logs">
@@ -116,9 +116,10 @@ After you have selected your photos from your device’s local storage, you see 
 ### Account Setting {#account-setting}
 
 <br/>
-In this section you have to see all your account information, remaining credits, reference faces and remaining transections. See this example given below.
+In this section you have to see all your account information, remaining credits, reference faces and remaining transactions. See this example given below.
 
 <img class="img-fluid" src="./img/tutorial/account-balance.jpg" alt="face-verification-logs">
+
 *Example: Account Balance Details*
 
 
@@ -130,7 +131,7 @@ You can purchase credit also form this section by providing payment information.
 <img class="img-fluid" src="./img/tutorial/purchase-credits.jpg" alt="face-verification-logs">
 *Example: Purchase Credits*
 
-You can purchase credits between 1 to 500 (max). Each credit costs 1$ or 72 indian rupees.
+You can purchase a minimum of 1 credit and a maximum of 500 credits.
 
 <br/>
 
@@ -164,6 +165,7 @@ In the upgrade section you can see different plans and you can upgrade to any pl
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/plans.jpg" alt="face-verification-logs">
+
 *Example: Upgrade Plan*
 
 
@@ -176,7 +178,7 @@ To upgrade to any plan just click the upgrade button and payment popup will be o
 #### User Profile Section: {#user-profile}
 
 <br/>
-To see all user information just click on the user profile page where all user information is given like <b>username, email Id, phone number, company details </b> etc.
+To see all user information just click on the user profile page where all user information is given like <b>username, email address, phone number, company details </b> etc.
 
 
 <br/>

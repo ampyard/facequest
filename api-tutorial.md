@@ -4,10 +4,10 @@ title: API Tutorial
 permalink: /api-tutorial
 ---
 
-## Facequest API Tutorial:
+## FaceQuest® API Tutorial:
 <br/>
 
-Facequest is facial recognition software as a service. That also provides an API (Application Programming Interface) for interacting with your client easily. 
+FaceQuest® is facial recognition software as a service. That also provides an API (Application Programming Interface) for interacting with your client easily. 
 
 You do not need jazzy infra or AI coding skills to recognize faces in your software. FaceQuest® enables you to concentrate on building your own software, without additional investment and maintenance for high end infrastructure.
 
@@ -66,7 +66,7 @@ We are using Postman to make all requests to the API endpoint.
 <br/>
 
 Returns pre-signed URLs to upload reference photo and the photo to be verified.
-For the authentication we use <b>email Id, secret token and constant authorization token “bearer”</b>.
+For the authentication we use <b>email address, secret token and constant authorization token “bearer”</b>.
 
 *Here is the sample cURL request to get upload URLs.*
 
@@ -120,7 +120,7 @@ To upload photos on which we have to do face verification, first we need to uplo
 
 *Example: Fetch URL API Response*
 
-Here we have upload URL and file path of reference photo and photo to be verified. This url is useful for uploading reference photo and photo to be verified.
+Here we have the upload URL and file path of reference photo and photo to be verified. This url is useful for uploading reference photo and photo to be verified.
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/upload-images-server.gif" alt="upload-images">
@@ -129,13 +129,13 @@ Here we have upload URL and file path of reference photo and photo to be verifie
 
 <br/>
 
-In the above given example we have to upload both reference photo and photo to be verified via PUT request through postman. Just copy the reference photo upload URL, create a PUT request and paste the URL that we copied earlier. Also we have to send an image file(Reference Photo or Photo to be verified ) with this request. 
+In the above given example we have to upload both reference photo and photo to be verified via PUT request through postman. Just copy the reference photo upload URL, create a PUT request and paste the URL that we copied earlier. Also, we have to send an image file(Reference Photo or Photo to be verified) with this request. 
 
 1. 1) Go to the Body in Postman, then click form-data.
 2. 2) Then you have to see Key and Value columns there.
 3. 3) In the key there is an option to select “text or File”. Give any name you like as a key.
 4. 4) In the value column you see the “select files” option. Here you have to select a reference photo from your computer’s local storage.
-5. 5) Then press the “send” button. You will see the status message “200 OK”, meaning your photo is successfully uploaded.
+5. 5) Then press the “send” button. You will see the status message “200 OK”, which means that your photo is successfully uploaded.
 
 <br/>
 Repeat the same process for “photo to be verified”. Just copy “Photo to be verified” URL and select file then create a new PUT request with it to upload the photo.
@@ -149,7 +149,7 @@ Repeat the same process for “photo to be verified”. Just copy “Photo to be
 <br/>
 Creates a new verification request with/without using the stored reference photo from folders. The progress of this request can be tracked asynchronously.
 
-We just have to pass a reference photo file path and photo to be verified file path to create this request. We can copy file path response from the fetch upload URL endpoint.
+We just have to pass a reference photo file path and photo to be verified file path to create this request. We can copy file path response from the "Fetch upload URL" endpoint.
 
 *Sample cURL request:*
 
@@ -177,13 +177,13 @@ curl -X POST 'https://verifyapi.facequest.io/api/v1/verification' \
 ```
 
 If you want to use a stored photo for reference then you just need to pass the true value in <b>*"useStoredPhotoForReference"*</b> otherwise pass false.
-See this example given below to create a verification request from API. This returns the <b>*“Verification Request Id”*</b> back.
+See this example given below to create a verification request from API. This returns the <b>*“Verification Request ID”*</b> back.
 
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/verification-request.gif" alt="verification-request">
 
-*Example: Create verifiation request*
+*Example: Create verification request*
 
 <br/>
 
@@ -193,7 +193,7 @@ See this example given below to create a verification request from API. This ret
 <br/>
 Track any verification request using verificationRequestId, returned upon invoking POST request at URL /api/v1/verification.
 
-For the verification we just need to pass Verification Request Id to the api endpoint that we copied from the “create verification request” response.
+For the verification we just need to pass Verification Request ID to the api endpoint that we copied from the “create verification request” response.
 
 *Sample cURL request:*
 
@@ -209,7 +209,7 @@ curl -X GET 'https://verifyapi.facequest.io/api/v1/verification/{verificationReq
 <br/>
 <img class="img-fluid" src="./img/tutorial/verification-tracking.gif" alt="track-verification">
 
-*Example: Track verifiation request*
+*Example: Track verification request*
 
 <br/>
 This gives us the verification result back with matched percentage, title and notes.
@@ -243,7 +243,7 @@ You just have to add your Facequest login email Id and Secret token that you hav
 <br/>
 <img class="img-fluid" src="./img/tutorial/verification-logs.gif" alt="verification-logs">
 
-*Example: Fetch verifiation logs*
+*Example: Fetch verification logs*
 
 <br/>
 
@@ -261,7 +261,7 @@ In case of unauthorized request it returns an <b>“unauthorized”</b> error me
 <br/>
 To create a folder with the given name where the reference photos can be uploaded. Maximum limit of reference photos per folder is 100, we use this API given in example.
 
-For the authorization we just need to have Email registered with Facequest.io, Secret token and Authorization token token “bearer”.
+For the authorization we just need to have Email registered with Facequest.io, Secret token and Authorization token <b>“bearer”</b>.
 
 *sample cURL request:*
 ```
@@ -278,7 +278,7 @@ In the above Post request, you have to pass the folder name at this api endpoint
 <br/>
 <img class="img-fluid" src="./img/tutorial/create-new-folder.gif" alt="verification-logs">
 
-*Example: Create new folder*
+*Example: Create a new folder*
 
 <br/>
 
@@ -355,7 +355,7 @@ This gives us all folders that you have created as a JSON response.
 
 <br/>
 
-If you want to delete any folder by using folder Id. Every folder has UUID.
+If you want to delete any folder by using folder ID. Every folder has UUID.
 
 *Sample cURL request:*
 
@@ -383,11 +383,11 @@ After successful request you get “success” message like this:
 <br/>
 
 Creates a reference photo with the given name within the given folder.
-You have to pass Reference Photo name, Folder Id and File path to create reference photo in particular folder. Just make a request with a cURL command in your terminal. 
+You have to pass Reference Photo name, Folder ID and File path to create reference photo in the particular folder. Just make a request with a cURL command in your terminal. 
 
 <b>Note:</b> Make sure that you are in the same directory from where you selected image file.
 
-After successful request it returns photo Id with “Success” message.
+After successful request it returns photo ID with “Success” message.
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/create-reference-photo.png" alt="verification-logs">
@@ -472,7 +472,7 @@ https://app.facequest.io/api/v1/reference-faces/replace-photo/{photoId} \
 
 <br/>
 
-The response returns an replaced image id with a success message like this.
+The response returns a replaced image ID with a success message like this.
 
 ```
 {
