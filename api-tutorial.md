@@ -48,7 +48,7 @@ To create a face verification request through API, First we need to have the fil
 
 We are using Postman to make all requests to the API endpoint.
 
-<b>How to make curl requests using Postman?</b>
+<b>How to make cURL requests using Postman?</b>
 
 1. 1) Open POSTMAN.
 2. 2) Click on the <b>"import"</b> tab on the upper left side.
