@@ -41,7 +41,7 @@ To call API endpoints we have used Postman or you can use a terminal or command 
 
 ### Face Verifications through API’s:
 <br/>
-APIs for FaceQuest's 1:1 Face verification.
+APIs for FaceQuest®'s 1:1 Face verification.
 
 Here step by step guide is given for how to do face verification, get verification logs, track verification results through verification ID, fetch photo upload URL and file path of the photo to be verified through facequest API.
 To create a face verification request through API, First we need to have the file path of the photo to be uploaded for face verification, one is reference face file path and other is photo to be verified file path. We use this file path in request we have to post from our terminal to facequest API endpoint.
