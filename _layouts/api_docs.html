@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="no-js">
+<style>
+  pre {
+    background-color: #333;
+  }
+</style>
+
+<head>
+  {% include tag_manager_head.html %}
+  {% include google_analytics.html %}
+  <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- Mobile Specific Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="img/logo_without_name.png">
+  <!-- Author Meta -->
+  <meta name="author" content="FaceQuest">
+  <!-- Meta Description -->
+  <meta name="description" content="Face recognition made easy with Facequest APIs. Add face recognition to your own software">
+  <!-- Meta Keyword -->
+  <meta name="keywords" content="Face Recognition as a Service, FaceQuest, Face Recognition Service, Face Recognition, Face Recognition APIs, Face Recognition API, Facial Recognition">
+  <!-- meta character set -->
+  <meta charset="UTF-8">
+  <!-- Site Title -->
+  <title>Face Recognition as a Service | FaceQuest | Face Recognition API | {{page.title}}</title>
+
+  {% include stylesheets.html %}
+  {% include cookie_consent.html %}
+  {% include https_redirector.html %}
+</head>
+<body>
+{% include tag_manager_body.html %}
+{% include page_header.html %}
+<section class="feature-area pb-10 mt-100" id="service">
+    <!-- dropup -->
+    <div class="btn-group dropup" style="position: fixed; bottom: 30px; left: 10px;">
+      <button style='background-color: #481380;' type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Docs
+      </button>
+      <div class="dropdown-menu">
+        <!-- Dropdown menu links -->
+        <a class="dropdown-item" href="#fetch-URL">Fetch upload URLs</a>
+        <a class="dropdown-item" href="#upload-photos">Upload photos via API</a>
+        <a class="dropdown-item" href="#create-verification">Create verification request</a>
+        <a class="dropdown-item" href="#track-verification">Track verification request</a>
+        <a class="dropdown-item" href="#verification-log">Fetch verification logs</a>
+        <a class="dropdown-item" href="#create-folders">Create folders</a>
+        <a class="dropdown-item" href="#get-folders">Retrieve folders</a>
+        <a class="dropdown-item" href="#delete-folders">Delete folders</a>
+        <a class="dropdown-item" href="#create-photo">Create a reference photo</a>
+        <a class="dropdown-item" href="#get-photo">Retrieve reference photo</a>
+        <a class="dropdown-item" href="#replace-photo">Replace reference photo</a>
+
+      </div>
+    </div>
+<!-- dropup end -->
+    <div class="container">
+        <div class="mt-10">
+            {{content}}
+        </div>
+    </div>
+</section>
+
+
+{% include footer.html %}
+{% include body_scripts.html %}
+<script type = "text/javascript" > _linkedin_partner_id = "2773820";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id); 
+  </script>
+  <script type="text/javascript"> 
+    (function()
+      {
+        var s = document.getElementsByTagName("script ")[0]; 
+        var b = document.createElement("script "); 
+        b.type = "text/javascript ";
+        b.async = true; 
+        b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; 
+        s.parentNode.insertBefore(b, s);
+      })(); 
+  </script> 
+  <noscript> 
+    <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=2773820&fmt=gif" /> 
+  </noscript>
+<a href="demo">
+  <div id="demo" class="sticky primary-btn mt-20">Book a demo</div>
+</a>
+</body>
+
+</html>
