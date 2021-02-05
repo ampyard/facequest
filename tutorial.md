@@ -18,7 +18,7 @@ with the one present in their ID. Save a significant amount on manual verificati
 
 Here in this example we have performed facial recognition by manually uploading photos.
 
-<img class="img-fluid" src="./img/tutorial/verify-face.jpg" alt="face-verification">
+<img class="img-fluid" src="./img/tutorial/face-verification-1-1.jpg" alt="face-verification">
 *Example: Face verifiction by manually uploading photo*
 
 <br/>
@@ -67,7 +67,7 @@ If you want to rename, delete or replace this photo that you have uploaded. Belo
 <br/>
 In the previous tutorial you have created a folder and uploaded a photo in it. To verify faces we have two options (1:1 Face match) which we have discussed at starting, you can manually upload photos. Here in 1:N Face Match we don’t have to upload Reference Photo manually. We can directly select one from folders that we have uploaded earlier in the reference faces section.
 
-<img class="img-fluid" src="./img/tutorial/verification-cloud.jpg" alt="face-verification-cloud">
+<img class="img-fluid" src="./img/tutorial/cloud-face-verify.jpg" alt="face-verification-cloud">
 
 *Note: If you have a plan that has cloud storage available you can use this feature.*
 
@@ -77,7 +77,7 @@ In the above picture, you can see two dropdown menus. The first one is for selec
 Now, you just have to upload the photo in the “Photo to be verified” section by clicking the camera icon. Then there is an option to add notes and title for this verification, so you can identify this verification later. Although it is optional, it is better to add some notes for face verification.
 
 <br/>
-<img class="img-fluid" src="./img/tutorial/verify-result.jpg" alt="face-verification-result">
+<img class="img-fluid" src="./img/tutorial/face-verification-result.jpg" alt="face-verification-result">
 
 *Example: Verifiaction Result*
 
