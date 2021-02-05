@@ -7,7 +7,7 @@ permalink: /api-tutorial
 ## FaceQuest® API Tutorial:
 <br/>
 
-FaceQuest® is facial recognition software as a service. That also provides an API (Application Programming Interface) for interacting with your client easily. 
+FaceQuest® is facial recognition software as a service. That also provides an API (Application Programming Interface) for interacting with your client application easily. 
 
 You do not need jazzy infra or AI coding skills to recognize faces in your software. FaceQuest® enables you to concentrate on building your own software, without additional investment and maintenance for high end infrastructure.
 
@@ -94,7 +94,7 @@ This url and file path are used to create face verification request through API.
 
 #### Step 2:
 
-#### How to Upload ReferencePhoto and Photo to Be Verified? {#upload-photos}
+#### How To Upload ReferencePhoto and Photo To Be Verified? {#upload-photos}
 
 <br/>
 
@@ -188,7 +188,7 @@ See this example given below to create a verification request from API. This ret
 <br/>
 
 #### Step 4:
-#### Track verification Request: {#track-verification}
+#### Track Verification Request: {#track-verification}
 
 <br/>
 Track any verification request using verificationRequestId, returned upon invoking POST request at URL /api/v1/verification.
@@ -256,7 +256,7 @@ In case of unauthorized request it returns an <b>“unauthorized”</b> error me
 
 <br/>
 
-#### Create Folder Using API: {#create-folders}
+#### Create A Folder Using API: {#create-folders}
 
 <br/>
 To create a folder with the given name where the reference photos can be uploaded. Maximum limit of reference photos per folder is 100, we use this API given in example.
@@ -304,7 +304,7 @@ After successfully creating the folder it gives us the following response back.
 
 <br/>
 
-#### Retrieve Folders: {#get-folders}
+#### Retrieve All Folders: {#get-folders}
 
 <br/>
 To retrieve all folders that you have created earlier, use this API endpoint that gives a list of all folders as a JSON response.
@@ -445,7 +445,7 @@ https://app.facequest.io/api/v1/reference-faces/folder/{folderId} \
 
 <br/>
 
-#### Replace reference photo with another photo: {#replace-photo}
+#### Replace Reference Photo With Another Photo: {#replace-photo}
 
 <br/>
 

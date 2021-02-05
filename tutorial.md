@@ -25,10 +25,10 @@ Here in this example we have performed facial recognition by manually uploading 
 
 #### Steps to perform face verification:
 <br/>
-1. You just have to upload a reference photo by clicking on the camera icon from your device's local storage.
-2. In photo to be verified you have to upload a photo that is to be verified with the first one.
-3. In additional details you can add Title (optional) and Notes (optional) details so that you can identify this verification later.
-4. Click the verify button to submit a request.
+1. 1) You just have to upload a reference photo by clicking on the camera icon from your device's local storage.
+2. 2) In photo to be verified you have to upload a photo that is to be verified with the first one.
+3. 3) In additional details you can add Title (optional) and Notes (optional) details so that you can identify this verification later.
+4. 4) Click the verify button to submit a request.
 
 This will return the result of your face match in percentage(%). For example “Verification success! Match 87%”
 <br/>
@@ -40,7 +40,7 @@ In this section we have to upload reference photo to the facequest cloud bucket 
 User having cloud storage plan can user this functionality, so that you do not need to manually upload 
 reference photo every time. Just upload once and use anytime from cloud.
 
-From the menu go to the Reference faces tab there you will see the folder section for creating new folders. (This feature is available in cloud storage plan)
+From the menu go to the Reference faces tab there you will see the folder section for creating new folders(This feature is available in cloud storage plan).
 Type the name of the folder and click on the create button to create a new folder.
 
 <img class="img-fluid" src="./img/tutorial/upload-folders.jpg" alt="create-folder">
@@ -63,7 +63,7 @@ If you want to rename, delete or replace this photo that you have uploaded. Belo
 
 <br/>
 
-### How to Perform Face Verification with Cloud Storage (1:N Face Match)? {#cloud-face-verify}
+### How to perform Face Verification with cloud storage (1:N Face Match)? {#cloud-face-verify}
 <br/>
 In the previous tutorial you have created a folder and uploaded a photo in it. To verify faces we have two options (1:1 Face match) which we have discussed at starting, you can manually upload photos. Here in 1:N Face Match we don’t have to upload Reference Photo manually. We can directly select one from folders that we have uploaded earlier in the reference faces section.
 
@@ -74,7 +74,7 @@ In the previous tutorial you have created a folder and uploaded a photo in it. T
 
 In the above picture, you can see two dropdown menus. The first one is for selecting the folder and the other one is for selecting a reference face photo. After selecting the folder name and photo you can see the selected photo in “Reference Photo” section.
 
-Now, you just have to upload the photo in the “Photo to be verified” section by clicking the camera icon. Then there is an option to add notes and title for this verification, so you can identify this verification later. Although it is optional, it is better to add some notes for face verification.
+Now, you just have to upload the photo in the “Photo to be verified” section by clicking the camera icon. Then in *Additional Details* section add notes and title for this verification, so you can identify this verification later. Although it is optional, it is better to add some notes for face verification.
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/face-verification-result.jpg" alt="face-verification-result">
@@ -82,11 +82,11 @@ Now, you just have to upload the photo in the “Photo to be verified” section
 *Example: Verifiaction Result*
 
 <br/>
-Then you have to click the “Verify” button to perform a face match, then after you can see the result of your face match (given in %). You see a message like in the picture below.
+Then you have to click the *“Verify”* button to perform a face match, then after you can see the result of your face match (given in %). You see a message like in the picture below.
 
-If both photos are of similar people you can see success messages with % match between two photos.
+If both photos are of same person you can see success messages with % match between two photos.
 
-You encounter an error message if something went wrong or if you have to match two different people's faces. If faces are different or don't look alike then you see a message like “Faces does not look alike. Flag this for human review.”
+You encounter an error message if something went wrong or if you have to match two different people's faces. If faces are different or don't look alike then you see a message like *“Faces does not look alike. Flag this for human review.”*
 
 That’s it you have successfully matched faces and get the result of verification. It is an easy to use platform for facial recognition or face match.
 
@@ -100,7 +100,7 @@ You can see your all verification records in the Face verification Logs section 
 
 <br/>
 
-### How to do Face Search using Quests? {#quests}
+### How to do face search using Quests? {#quests}
 
 <br/>
 To perform verification using Quest you just have to select the folder name from dropdown menus. By clicking on the green camera icon you can upload photos that you have to match with your saved photos in your Database.
@@ -126,7 +126,7 @@ In this section you have to see all your account information, remaining credits,
 #### Purchase Credits: {#purchase-credit}
 
 <br/>
-You can purchase credit also form this section by providing payment information. You can buy credits using a Debit card, Credit card, or UPI. By clicking the Pay button payment popup appeared.
+You can purchase credit form this section by providing payment information. You can buy credits using a Debit card, Credit card, or UPI. By clicking the Pay button payment popup appeared.
 
 <img class="img-fluid" src="./img/tutorial/purchase-credits.jpg" alt="face-verification-logs">
 *Example: Purchase Credits*
@@ -149,28 +149,29 @@ If you are using API’s of Facequest you need to set an API secret for secure a
 #### Setting up Billing Details: {#billing-details}
 
 <br/>
-You can add your billing details in this section like company name, address if your company, GST Number (Applicable to indian consumers only).
+You can add your billing details in this section like company name, billing address of your company, GST Number (Applicable to indian consumers only).
 
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/company-details.jpg" alt="face-verification-logs">
-*Example: Set billing details*
+
+*Example: Setting up billing details*
 
 <br/>
 
-#### How to upgrade your plan? {#upgrade-plan}
+#### How to Upgrade Your Plan? {#upgrade-plan}
 
 <br/>
-In the upgrade section you can see different plans and you can upgrade to any plan that is suitable for you. There are various plans like lite, pro and business for monthly and yearly plans
+In the upgrade section you can see different plans and you can upgrade to any plan that is suitable for you. There are various plans like Lite, Pro and Business for monthly and yearly peroid.
 
 <br/>
 <img class="img-fluid" src="./img/tutorial/plans.jpg" alt="face-verification-logs">
 
-*Example: Upgrade Plan*
+*Example: Upgrade Plans*
 
 
 <br/>
-To upgrade to any plan just click the upgrade button and payment popup will be open where you can enter your credit and debit card details or pay through UPI.
+To upgrade to any plan just click the Upgrade button and payment popup will be open where you can enter your credit and debit card details or pay through UPI.
 
 
 <br/>
