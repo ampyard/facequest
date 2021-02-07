@@ -2003,7 +2003,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   color: #fff;
   font-weight: 100;
-  font-size: 19px;
+  font-size: 15px;
   font-family: 'Patua One', cursive;
   outline: none
 }
@@ -3375,12 +3375,17 @@ font-weight: bold
 .navbar-btn {
 background-color: #2E8B57;
 border-radius: 30px;
+text-align:center;
 }
 
 .navbar-btn:hover {
 text-decoration:none !important;
 background-color: #008080;
 border-radius: 30px;
+}
+
+.ticker-btn:hover {
+text-decoration:none !important;
 }
 
 
