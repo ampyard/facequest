@@ -2012,7 +2012,10 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu a:hover {
   text-decoration: underline;
   text-decoration-color: #ffd420;
+}
 
+.menu-has-children a:hover {
+  text-decoration: none !important;
 }
 
 .nav-menu>li {

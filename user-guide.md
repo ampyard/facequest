@@ -1,10 +1,10 @@
 ---
 layout: tutorial
-title: Tutorial
-permalink: /tutorial
+title: User Guide
+permalink: /user-guide
 ---
 
-## Face verification Tutorial using UI
+## User Guide
 
 
 <br/>
