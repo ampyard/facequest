@@ -4,7 +4,8 @@
     "date": "17 August, 2020",
     "url": "https://medium.com/facequest/facequest-facial-recognition-ai-for-mobile-payment-apps-f11549dd97ff",
     "excerpt": "Over the years, there has been a great increase in digital payments in India and the rest of the world. People use different mobile payment apps for eg., Alipay, WeChat, Apple Pay, PayPal, Samsung Pay, Amazon Pay, Google Pay, etc.",
-    "tags": ["Payments", "Fintech"]
+    "tags": ["Payments", "Fintech"],
+    "alt": "Facial Recognition AI — The Missing Security Link in Mobile Payment Apps"
   },
   {
     "title": "How to prevent ATM frauds using Artificial Intelligence?",
@@ -12,7 +13,8 @@
     "date": "4 August, 2020",
     "url": "https://medium.com/facequest/how-to-prevent-atm-frauds-using-artificial-intelligence-92e9ace599a4",
     "excerpt": "One of the most common types of ATM fraud that exists is ATM cloning or ATM skimming. ATM skimming is a process where thieves place a device on the face of an ATM, which looks like a part of the machine.",
-    "tags": ["Fraud Prevention", "ATM", "Banking"]
+    "tags": ["Fraud Prevention", "ATM", "Banking"],
+    "alt": "Prevent ATM frauds using Artificial Intelligence"
   },
   {
     "title": "The role of AWS in building a SaaS product",
@@ -20,7 +22,8 @@
     "date": "12 April, 2020",
     "url": "https://medium.com/@notify.kamalraj/the-role-of-aws-in-building-a-saas-product-62ec078e4920",
     "excerpt": "While we could have used EC2, it often requires a great deal of tedious manual configuration and oversight. Managing these would require a great deal of resources and effort, and it takes time away from what’s most important: deploying applications.",
-    "tags": ["AWS", "Architecture"]
+    "tags": ["AWS", "Architecture"],
+    "alt": "The role of AWS in building a SaaS product"
   },
   {
     "title": "Eating my Own Agile/DevOps Dog Food — S1E1",
@@ -28,6 +31,7 @@
     "date": "12 April, 2020",
     "url": "https://medium.com/@VivekGanesan/eating-my-own-agile-devops-dog-food-s1e1-b1b307b936ce",
     "excerpt": "FaceQuest being a face recognition service, we needed to store the reference faces somewhere. We created a research spike (dog food! munch, munch) to decide where to store our reference faces.",
-    "tags": ["Agile", "DevOps", "Image Storage"]
+    "tags": ["Agile", "DevOps", "Image Storage"],
+    "alt": "Agile and Devops"
   }
 ]
